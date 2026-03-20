@@ -1,74 +1,330 @@
-# ❓ 常见问题（FAQ）
+# ❓ 常见问题
 
-本页汇总部署、配置与日常使用中最常见的问题，并给出建议排查步骤。若需更细节的说明，可在对应功能页找到深入文档。
+<div class="faq-hero">
+  <div class="hero-content">
+    <h2 class="hero-title">问题排查与解答</h2>
+    <p class="hero-subtitle">汇总部署、配置与日常使用中最常见的问题，帮助您快速定位并解决问题</p>
+    <div class="hero-decoration"></div>
+  </div>
+</div>
 
----
+<div class="faq-nav-grid">
 
-## 1. 麦麦不说话 / 说话频率异常
+<div class="nav-card">
 
-**Q：为什么麦麦不回复消息？**请检查：
+<div class="card-header">
+  <span class="card-icon">❓</span>
+  <div class="card-title-group">
+    <h3 class="card-title">常见问题概览</h3>
+    <p class="card-desc">通用问题与解决方案</p>
+  </div>
+</div>
 
-1. `config/bot_config.toml` 的 `[chat].talk_value` 是否被设置得过低。
-2. `talk_value_rules` 是否命中了当前时段导致降为 0。
-3. `plan_style` 是否要求“少说话”，可适度放宽。
-4. 是否启用了"仅 @ 必回"：`mentioned_bot_reply = true` 时，只要有人 @ 才会强制回复。
+<div class="card-links">
+  <a href="./faq-overview" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>查看全部常见问题</span>
+  </a>
+</div>
 
-**Q：提及必回没有生效？**
-确保群的 `@麦麦` 格式正确，并确认 `mentioned_bot_reply = true`、`at_bot_inevitable_reply` 大于 0。如果仍未生效，可在日志中搜索 `planner` 输出确认是否检测到提及事件。
+</div>
 
----
+<div class="nav-card">
 
-## 2. 数据与隐私
+<div class="card-header">
+  <span class="card-icon">🪟</span>
+  <div class="card-title-group">
+    <h3 class="card-title">Windows 问题</h3>
+    <p class="card-desc">Windows 系统相关问题</p>
+  </div>
+</div>
 
-**Q：聊天记录、记忆数据存在哪里？**
-默认使用 `data/maibot.db`（Peewee SQLite）存储，包括黑话、记忆、表情、插件数据等。若需迁移或清理，可停机后备份/替换该文件。
+<div class="card-links">
+  <a href="./windows" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>Windows 常见问题</span>
+  </a>
+</div>
 
-**Q：如何确保数据合规？**
-请在部署前阅读[使用许可条款](../other/EULA.md)。若所在环境对日志/记忆存储有要求，可关闭不必要的模块（如 `[memory]`、`[emoji].steal_emoji`），或定期在数据库层执行清理脚本。
+</div>
 
----
+<div class="nav-card">
 
-## 3. API 配额与限速
+<div class="card-header">
+  <span class="card-icon">🐧</span>
+  <div class="card-title-group">
+    <h3 class="card-title">Linux 问题</h3>
+    <p class="card-desc">Linux 系统相关问题</p>
+  </div>
+</div>
 
-**Q：频繁出现 429 或余额不足？**
+<div class="card-links">
+  <a href="./linux" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>Linux 常见问题</span>
+  </a>
+</div>
 
-- 检查 `model_task_config` 是否选择了速率更高的模型；可为高频任务（如表达学习、黑话推断）选择 `utils_small` 减少 token。
-- 调整 `[chat].planner_size`、`[expression].learning_list` 的 `learning_intensity`，降低高频调用。
-- 在 `.env` 中配置多个 API Key（若服务商支持）并开启轮询。
+</div>
 
----
+<div class="nav-card">
 
-## 4. 个性与表达
+<div class="card-header">
+  <span class="card-icon">🍎</span>
+  <div class="card-title-group">
+    <h3 class="card-title">macOS 问题</h3>
+    <p class="card-desc">macOS 系统相关问题</p>
+  </div>
+</div>
 
-**Q：人格配置太长会怎样？**
-`personality` 建议控制在 100~150 字，过长会占用上下文导致回复拖泥带水。可以把差异化设定拆到 `states`、`plan_style`、`reply_style` 等字段，在具体场景再切换。
+<div class="card-links">
+  <a href="./macos" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>macOS 常见问题</span>
+  </a>
+</div>
 
-**Q：表达学习里老梗不更新？**
-查看 `data/` 下的 `expression` 数据，可手动删除冷门表达，或降低 `learning_intensity` 让学习频率下降。必要时可重置 `Expression` 表重新积累。
+</div>
 
----
+</div>
 
-## 5. 常见自定义需求
+## 获取帮助
 
-**Q：想让麦麦更“话痨”/更“社恐”？**围绕以下三处调整：
+<div class="help-container">
 
-- `[chat].talk_value` 与 `talk_value_rules` 控制总体频率。
-- `[personality].plan_style` 决定触发规则，可加入“看到热闹就插嘴”等指令。
-- 表达学习的 `use_expression`/`enable_learning` 用于控制语言风格多样性。
+<div class="help-card">
+  <div class="help-icon">📖</div>
+  <h4>查阅手册</h4>
+  <p>浏览用户手册的相关章节寻找答案</p>
+</div>
 
-**Q：需要多语言输出？**
-在 `reply_style` 中明确语言要求，或按群配置 `experimental.chat_prompts`（如：“这是一个英语群，请用英文回复”）。同时注意 emoji/字符集在不同平台的兼容性。
+<div class="help-card">
+  <div class="help-icon">💬</div>
+  <h4>加入社群</h4>
+  <p>加入<a href="../other/group">官方社群</a>获取帮助</p>
+</div>
 
----
+<div class="help-card">
+  <div class="help-icon">🐛</div>
+  <h4>提交 Issue</h4>
+  <p>在 GitHub 上提交问题反馈</p>
+</div>
 
-## 6. 平台特定问题
+</div>
 
-若遇到的问题与操作系统相关，请参考对应的平台 FAQ：
+<style scoped>
+/* ===== Hero Section ===== */
+.faq-hero {
+  position: relative;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2.5rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(50, 205, 50, 0.08) 100%);
+  border: 1px solid rgba(255, 140, 0, 0.15);
+  overflow: hidden;
+}
 
-- **[Windows 常见问题](./windows.md)** – 针对 Windows 系统特有的部署、权限、依赖等问题。
-- **[Linux 常见问题](./linux.md)** – 针对 Linux 系统特有的虚拟环境、编译工具、防火墙等问题。
-- **[macOS 常见问题](./macos.md)** – 针对 macOS 特有的安全提示、端口占用、Xcode 工具等问题。
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
 
----
+.hero-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(120deg, #ff8c00 30%, #32cd32);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-如以上内容未覆盖你的问题，欢迎在 Issue、群组或插件市场反馈，我们会持续完善 FAQ。欢迎也补充自己的排障经验，帮助后续用户更快上手。***
+.hero-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--vp-c-text-2);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.hero-decoration {
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ===== Navigation Grid ===== */
+.faq-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.nav-card {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-card:hover {
+  border-color: rgba(255, 140, 0, 0.3);
+  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.card-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.card-title-group {
+  flex: 1;
+}
+
+.card-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.card-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--vp-c-text-3);
+}
+
+.card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 8px;
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: rgba(255, 140, 0, 0.03);
+}
+
+.card-link:hover {
+  background: rgba(255, 140, 0, 0.1);
+  color: #ff8c00;
+  padding-left: 1.125rem;
+}
+
+.link-arrow {
+  color: #ff8c00;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.card-link:hover .link-arrow {
+  transform: translateX(3px);
+}
+
+.card-link-main {
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(50, 205, 50, 0.05) 100%);
+  font-weight: 500;
+  border-left: 3px solid #ff8c00;
+}
+
+.card-link-main:hover {
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(50, 205, 50, 0.1) 100%);
+}
+
+/* ===== Help Section ===== */
+.help-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.help-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.help-card:hover {
+  border-color: rgba(255, 140, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 140, 0, 0.1);
+}
+
+.help-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.help-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.help-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--vp-c-text-3);
+  line-height: 1.5;
+}
+
+.help-card a {
+  color: #ff8c00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.help-card a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 640px) {
+  .faq-hero {
+    padding: 1.75rem 1.25rem;
+  }
+  
+  .hero-title {
+    font-size: 1.4rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .faq-nav-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .help-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

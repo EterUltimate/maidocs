@@ -100,4 +100,4 @@ macOS 上虚拟环境的激活命令与 Windows 不同，请注意区分：
 
 ---
 
-如以上内容未解决您的问题，请参考 [通用 FAQ](../faq/index.md) 或前往 [麦麦社群](/manual/other/group) 寻求帮助。
+如以上内容未解决您的问题，请参考 [通用 FAQ](../faq/faq-overview) 或前往 [麦麦社群](/manual/other/group) 寻求帮助。

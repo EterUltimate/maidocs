@@ -10,8 +10,8 @@
 
 如果您对 Linux 命令和系统管理不太熟悉，建议优先选择以下更简单的部署方式：
 
-- **Docker 部署**：提供容器化的一键运行方案，详见 [Docker 部署指南](../deployment/mmc_deploy_docker.md)。
-- **Windows 部署**：在 Windows 系统上通过图形界面操作，详见 [安装指南](../deployment/installation.md)。
+- **Docker 部署**：提供容器化的一键运行方案，详见 [Docker 部署指南](../deployment/mmc_deploy_docker)。
+- **Windows 部署**：在 Windows 系统上通过图形界面操作，详见 [安装指南](../deployment/installation)。
 
 ---
 
@@ -82,4 +82,4 @@ source venv/bin/activate
 
 ---
 
-如以上内容未解决您的问题，请参考 [通用 FAQ](../faq/index.md) 或前往 [麦麦社群](/manual/other/group) 寻求帮助。
+如以上内容未解决您的问题，请参考 [通用 FAQ](../faq/faq-overview) 或前往 [麦麦社群](/manual/other/group) 寻求帮助。

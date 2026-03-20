@@ -1,79 +1,18 @@
-# 📦 MaiBot 安装方式
+# 🌐 社区部署方案
 
 <div class="manual-hero">
   <div class="hero-content">
-    <h2 class="hero-title">安装部署</h2>
-    <p class="hero-subtitle">选择适合你的安装方式，快速部署 MaiBot</p>
+    <h2 class="hero-title">社区部署方案</h2>
+    <p class="hero-subtitle">由社区成员贡献的各种部署方案，为不同场景和需求的用户提供更多选择</p>
     <div class="hero-decoration"></div>
   </div>
 </div>
 
-<div class="manual-nav-grid">
+::: tip 提示
+这些部署方案由社区成员维护，如有问题请在对应项目的 Issue 中反馈，或加入[官方社群](/manual/other/group)寻求帮助。
+:::
 
-<div class="nav-card">
-
-<div class="card-header">
-  <span class="card-icon">📦</span>
-  <div class="card-title-group">
-    <h3 class="card-title">一键包安装</h3>
-    <p class="card-desc">Windows 用户快速上手</p>
-  </div>
-</div>
-
-<div class="card-links">
-  <a href="https://github.com/DrSmoothl/MaiBotOneKey" class="card-link card-link-main" target="_blank">
-    <span class="link-arrow">→</span>
-    <span>GitHub 下载</span>
-  </a>
-  <a href="/manual/other/group" class="card-link">
-    <span class="link-arrow">→</span>
-    <span>社群获取最新版本</span>
-  </a>
-</div>
-
-</div>
-
-<div class="nav-card">
-
-<div class="card-header">
-  <span class="card-icon">📝</span>
-  <div class="card-title-group">
-    <h3 class="card-title">安装指南</h3>
-    <p class="card-desc">适合所有主流操作系统</p>
-  </div>
-</div>
-
-<div class="card-links">
-  <a href="installation" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>标准安装指南</span>
-  </a>
-</div>
-
-</div>
-
-<div class="nav-card">
-
-<div class="card-header">
-  <span class="card-icon">🐳</span>
-  <div class="card-title-group">
-    <h3 class="card-title">Docker 部署</h3>
-    <p class="card-desc">容器化快速部署方案</p>
-  </div>
-</div>
-
-<div class="card-links">
-  <a href="mmc_deploy_docker" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>Docker 部署指南</span>
-  </a>
-</div>
-
-</div>
-
-</div>
-
-## 社区部署方案
+## 部署方案列表
 
 <div class="manual-nav-grid">
 
@@ -87,8 +26,14 @@
   </div>
 </div>
 
+<ul class="card-features">
+  <li>无需服务器，手机即可运行</li>
+  <li>适合个人使用和测试</li>
+  <li>配置相对复杂，适合有 Linux 基础</li>
+</ul>
+
 <div class="card-links">
-  <a href="community/mmc_deploy_android" class="card-link card-link-main">
+  <a href="./mmc_deploy_android" class="card-link card-link-main">
     <span class="link-arrow">→</span>
     <span>Android 部署指南</span>
   </a>
@@ -106,8 +51,14 @@
   </div>
 </div>
 
+<ul class="card-features">
+  <li>支持水平扩展和高可用</li>
+  <li>适合有 K8s 经验的用户</li>
+  <li>需要已部署的 Kubernetes 集群</li>
+</ul>
+
 <div class="card-links">
-  <a href="community/mmc_deploy_kubernetes" class="card-link card-link-main">
+  <a href="./mmc_deploy_kubernetes" class="card-link card-link-main">
     <span class="link-arrow">→</span>
     <span>Kubernetes 部署指南</span>
   </a>
@@ -125,8 +76,16 @@
   </div>
 </div>
 
+<div class="card-author">作者：梦归云帆</div>
+
+<ul class="card-features">
+  <li>图形化管理界面</li>
+  <li>一键安装和更新</li>
+  <li>适合不熟悉命令行的用户</li>
+</ul>
+
 <div class="card-links">
-  <a href="community/1panel" class="card-link card-link-main">
+  <a href="./1panel" class="card-link card-link-main">
     <span class="link-arrow">→</span>
     <span>1Panel 部署指南</span>
   </a>
@@ -144,8 +103,16 @@
   </div>
 </div>
 
+<div class="card-author">作者：Astriora</div>
+
+<ul class="card-features">
+  <li>自动化程度高</li>
+  <li>快速部署</li>
+  <li>适合 Linux 服务器环境</li>
+</ul>
+
 <div class="card-links">
-  <a href="community/linux_one_key" class="card-link card-link-main">
+  <a href="./linux_one_key" class="card-link card-link-main">
     <span class="link-arrow">→</span>
     <span>Linux 一键脚本部署指南</span>
   </a>
@@ -155,26 +122,56 @@
 
 </div>
 
-## 获取帮助
+## 贡献部署方案
+
+<div class="contribute-container">
+
+<div class="contribute-card">
+  <div class="contribute-icon">🚀</div>
+  <h4>分享你的部署方案</h4>
+  <p>如果你有新的部署方案想要贡献，欢迎提交到文档仓库</p>
+  <div class="contribute-steps">
+    <div class="contribute-step">
+      <span class="step-num">1</span>
+      <span>Fork <a href="https://github.com/Mai-with-u/docs" target="_blank">文档仓库</a></span>
+    </div>
+    <div class="contribute-step">
+      <span class="step-num">2</span>
+      <span>添加部署文档到 <code>manual/deployment/community/</code></span>
+    </div>
+    <div class="contribute-step">
+      <span class="step-num">3</span>
+      <span>更新本页面添加方案介绍</span>
+    </div>
+    <div class="contribute-step">
+      <span class="step-num">4</span>
+      <span>提交 Pull Request</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+## 故障排除
 
 <div class="help-container">
 
 <div class="help-card">
   <div class="help-icon">❓</div>
   <h4>常见问题</h4>
-  <p>查阅 <a href="/manual/faq/">FAQ</a> 获取常见问题的解决方案</p>
+  <p>查阅 <a href="/manual/faq/">FAQ</a> 中的常见问题</p>
+</div>
+
+<div class="help-card">
+  <div class="help-icon">🔍</div>
+  <h4>查看 Issue</h4>
+  <p>查看对应部署方案的 Issue 列表</p>
 </div>
 
 <div class="help-card">
   <div class="help-icon">💬</div>
   <h4>加入社群</h4>
-  <p>加入<a href="/manual/other/group">麦麦社群</a>获取实时帮助</p>
-</div>
-
-<div class="help-card">
-  <div class="help-icon">🐛</div>
-  <h4>提交 Issue</h4>
-  <p>在 GitHub 上提交问题反馈</p>
+  <p>加入<a href="/manual/other/group">麦麦社群</a>获取帮助</p>
 </div>
 
 </div>
@@ -229,7 +226,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .nav-card {
@@ -250,7 +247,7 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .card-icon {
@@ -274,6 +271,38 @@
   margin: 0;
   font-size: 0.875rem;
   color: var(--vp-c-text-3);
+}
+
+.card-author {
+  font-size: 0.8rem;
+  color: #ff8c00;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.card-features li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.5;
+}
+
+.card-features li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #32cd32;
+  font-weight: bold;
 }
 
 .card-links {
@@ -321,12 +350,102 @@
   background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(50, 205, 50, 0.1) 100%);
 }
 
+/* ===== Contribute Section ===== */
+.contribute-container {
+  margin-bottom: 2.5rem;
+}
+
+.contribute-card {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.contribute-card:hover {
+  border-color: rgba(50, 205, 50, 0.3);
+  box-shadow: 0 6px 25px rgba(50, 205, 50, 0.1);
+}
+
+.contribute-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contribute-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.contribute-card > p {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-3);
+}
+
+.contribute-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  text-align: left;
+}
+
+.contribute-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 140, 0, 0.04);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+  transition: all 0.2s ease;
+}
+
+.contribute-step:hover {
+  background: rgba(255, 140, 0, 0.08);
+}
+
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8c00, #32cd32);
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.contribute-step a {
+  color: #ff8c00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contribute-step a:hover {
+  text-decoration: underline;
+}
+
+.contribute-step code {
+  background: rgba(255, 140, 0, 0.1);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
 /* ===== Help Section ===== */
 .help-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.25rem;
-  margin-top: 1.5rem;
 }
 
 .help-card {
@@ -388,6 +507,10 @@
   }
   
   .manual-nav-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contribute-steps {
     grid-template-columns: 1fr;
   }
   

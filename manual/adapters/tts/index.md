@@ -1,126 +1,437 @@
-# MaiBot TTS 语音配置指南 ✨
+# 🔊 TTS 语音适配器
 
-本文档是墨百灵为大家准备的 MaiBot TTS Adapter 的配置指南~。
+<div class="tts-hero">
+  <div class="hero-content">
+    <h2 class="hero-title">让 MaiBot 开口说话</h2>
+    <p class="hero-subtitle">TTS 适配器可将文字消息转换为语音，让你的机器人用声音与群友互动</p>
+    <div class="hero-decoration"></div>
+  </div>
+</div>
 
-此 Adapter 是一个用于将 MaiBot 的文字消息转换为语音的适配器，语音信息随后通过 Napcat 发送到 QQ。
+<div class="tts-nav-grid">
 
-因此，这个适配器要求**同时安装 Napcat 适配器和 MaiBot TTS 适配器才行喵！**
+<div class="nav-card nav-card-main">
 
-::: tip
-但是，如果各位用的其他平台消息适配器声明了兼容这个适配器，那么 Napcat 适配器就可以不安装。
+<div class="card-header">
+  <span class="card-icon">📖</span>
+  <div class="card-title-group">
+    <h3 class="card-title">配置指南</h3>
+    <p class="card-desc">从安装到配置的完整说明</p>
+  </div>
+</div>
+
+<div class="card-links">
+  <a href="./configuration-guide" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>TTS 配置指南</span>
+  </a>
+  <a href="./configuration-guide#安装步骤" class="card-link">
+    <span class="link-arrow">→</span>
+    <span>安装步骤</span>
+  </a>
+  <a href="./configuration-guide#配置文件详解" class="card-link">
+    <span class="link-arrow">→</span>
+    <span>配置文件详解</span>
+  </a>
+</div>
+
+</div>
+
+<div class="nav-card">
+
+<div class="card-header">
+  <span class="card-icon">🎵</span>
+  <div class="card-title-group">
+    <h3 class="card-title">GPT_Sovits</h3>
+    <p class="card-desc">基于 GPT-SoVITS 的语音合成</p>
+  </div>
+</div>
+
+<div class="card-links">
+  <a href="./gpt_sovits" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>模块配置</span>
+  </a>
+</div>
+
+</div>
+
+<div class="nav-card">
+
+<div class="card-header">
+  <span class="card-icon">🤖</span>
+  <div class="card-title-group">
+    <h3 class="card-title">Qwen_omni</h3>
+    <p class="card-desc">通义千问全模态语音合成</p>
+  </div>
+</div>
+
+<div class="card-links">
+  <a href="./qwen_omni" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>模块配置</span>
+  </a>
+</div>
+
+</div>
+
+<div class="nav-card">
+
+<div class="card-header">
+  <span class="card-icon">🫘</span>
+  <div class="card-title-group">
+    <h3 class="card-title">Doubao_TTS</h3>
+    <p class="card-desc">字节跳动豆包语音服务</p>
+  </div>
+</div>
+
+<div class="card-links">
+  <a href="./doubao_tts" class="card-link card-link-main">
+    <span class="link-arrow">→</span>
+    <span>模块配置</span>
+  </a>
+</div>
+
+</div>
+
+</div>
+
+## 工作原理
+
+<div class="flow-container">
+
+<div class="flow-card">
+  <div class="flow-icon">💬</div>
+  <h4>接收消息</h4>
+  <p>MaiBot 核心生成文字回复</p>
+</div>
+
+<div class="flow-arrow">→</div>
+
+<div class="flow-card">
+  <div class="flow-icon">🔊</div>
+  <h4>TTS 转换</h4>
+  <p>适配器将文字转为语音</p>
+</div>
+
+<div class="flow-arrow">→</div>
+
+<div class="flow-card">
+  <div class="flow-icon">📱</div>
+  <h4>发送语音</h4>
+  <p>通过 Napcat 发送到 QQ</p>
+</div>
+
+</div>
+
+::: tip 前提条件
+使用 TTS 适配器需要**同时安装 Napcat 适配器和 TTS 适配器**。如果使用的其他平台消息适配器声明了兼容，则可不安装 Napcat。
 :::
 
-::: tip
-要是各位在配置过程中遇到了困难，同时对语音功能没有那么强烈的需求，那直接用文字聊天也是很棒的选择哦~ 百灵相信大家都能找到最适合自己的方式喵！❤️
-:::
+## 获取帮助
 
+<div class="help-container">
 
-## 安装步骤
-安装这个适配器也十分简单喵，就像安装Napcat适配器一样，只需要从Github上的[仓库](https://github.com/MaiM-with-u/maimbot_tts_adapter)下载适配器文件，然后安装好依赖，再进行一些配置，最后启动就可以啦~
-```bash
-git clone https://github.com/MaiM-with-u/maimbot_tts_adapter.git
-cd maimbot_tts_adapter
-pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple --upgrade
-python main.py
-```
+<div class="help-card">
+  <div class="help-icon">📖</div>
+  <h4>查阅配置指南</h4>
+  <p>详细的 <a href="./configuration-guide">配置指南</a> 帮助你完成设置</p>
+</div>
 
-## 配置文件详解
+<div class="help-card">
+  <div class="help-icon">💬</div>
+  <h4>加入社群</h4>
+  <p>加入<a href="/manual/other/group">官方社群</a>获取帮助</p>
+</div>
 
-相比于Napcat适配器，TTS适配器的配置文会复杂那么一丢丢，但是百灵相信各位能够看懂，并且成功克服所有困难，让自己的小机器人开口说话的喵！
+<div class="help-card">
+  <div class="help-icon">🐛</div>
+  <h4>反馈问题</h4>
+  <p>在 GitHub 上提交 Issue 反馈</p>
+</div>
 
-TTS适配器的所有配置样例文件都在`template_configs`文件夹下面，各位可以根据自己的喜好和需求，选择不同的语音服务提供商。
+</div>
 
-首先，我们需要先从`template_configs/base_template.toml`复制一份配置文件模板到`configs/base.toml`。
+<style scoped>
+/* ===== Hero Section ===== */
+.tts-hero {
+  position: relative;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2.5rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(64, 224, 208, 0.08) 100%);
+  border: 1px solid rgba(147, 112, 219, 0.2);
+  overflow: hidden;
+}
 
-首先，百灵来介绍一下基础配置文件 `base.toml` 。
-```toml
-[server]
-host = "127.0.0.1"
-port = 8070
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
 
-[routes]
-qq = "http://127.0.0.1:8000/ws"
-[probability]
-voice_probability = 0.2 # 使用语音的概率
+.hero-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(120deg, #9370db 30%, #40e0d0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-[enabled_tts] # 启用的TTS模块，请与各插件的目录名称一致
-enabled = ["GPT_Sovits"]
+.hero-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--vp-c-text-2);
+  max-width: 600px;
+  line-height: 1.6;
+}
 
-[tts_base_config]
-stream_mode = false  # 是否启用流式输出
-post_process = false # 是否启用后处理（现阶段无效）
+.hero-decoration {
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(147, 112, 219, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-[debug]
-logging_level = "INFO" # 日志级别
-```
+/* ===== Navigation Grid ===== */
+.tts-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
 
-在开始详细的配置讲解之前，百灵先用一个示意图，给各位展示一下 Napcat 适配器、TTS 适配器和 MaiBot 核心之间的数据流：
+.nav-card {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-**原来的：**
+.nav-card:hover {
+  border-color: rgba(147, 112, 219, 0.3);
+  box-shadow: 0 8px 30px rgba(147, 112, 219, 0.12);
+  transform: translateY(-4px);
+}
 
-```mermaid
-graph LR
-    A[Napcat Adapter] <--> B[MaiBot 核心]
-```
+.nav-card-main {
+  grid-column: 1 / -1;
+}
 
-**启用了TTS之后：**
+@media (min-width: 800px) {
+  .nav-card-main {
+    grid-column: span 2;
+  }
+}
 
-```mermaid
-graph LR
-    A[Napcat Adapter] <--> B[TTS Adapter]
-    B <--> C[MaiBot 核心]
-```
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
 
-相信各位一定发现了，现在 Napcat Adapter 的服务器不再直接指向 MaiBot 核心了，而是指向了我们的TTS适配器！因此，我们需要稍微修改一下 **Napcat Adapter** 的 `config.toml` 文件中的几个小地方：
+.card-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
 
-```toml
-[MaiBot_Server]
-platform_name = "qq"
-host = "localhost"
-port = 8070
-[Voice]
-use_tts = true
-```
+.card-title-group {
+  flex: 1;
+}
 
-这里的`host`要对应我们`base.toml`里的`host`字段，`port`也要对应`base.toml`里的`port`字段。
+.card-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
 
-接下来，百灵继续解释一下 `base.toml` 文件里其他配置项。
+.card-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--vp-c-text-3);
+}
 
-### `routes` 路由配置
-在这个配置里，键名代表正在使用的适配器平台的名称。百灵推荐大家直接使用 `qq` ，因为 Napcat Adapter 默认的平台名称就是 `qq` 。当然啦，如果你使用的是其他的适配器，你可以在这里修改为你使用的适配器的名称。
+.card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-对于键值的url，你只需要把MaiBot主程序 `.env` 文件里面的 `HOST` 和 `PORT` 这两个字段的值组合起来（举个例子，如果HOST是 `127.0.0.1`，PORT是 `8000`，那组合起来就是 `http://127.0.0.1:8000`），然后在这个地址的最后面加上 `/ws` ，就构成了示例里面的url。
+.card-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 8px;
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: rgba(147, 112, 219, 0.03);
+}
 
-### `probability` 语音概率
-这个字段是用来设置语音的概率的，其按照百分数计算。
+.card-link:hover {
+  background: rgba(147, 112, 219, 0.1);
+  color: #9370db;
+  padding-left: 1.125rem;
+}
 
-### `enabled_tts` 启用的TTS模块
-这个字段是用来指定具体要启用哪个TTS模块。使用时请在这里填上自己想要使用的那个TTS模块对应的文件夹名称，且此项目对大小写敏感。
-::: info 百灵小贴士
-内置支持的语音模块有这些：
-1. [GPT_Sovits](./gpt_sovits) 
-2. [Qwen_omni](./qwen_omni)
-3. [Doubao_TTS](./doubao_tts)
+.link-arrow {
+  color: #9370db;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
 
-填入内容的时候请从上面的列表中选择，并注意大小写哦~
-:::
-虽然理论上这里可以填上好几个模块的名字，但是目前这个版本的适配器只支持同时启用一个语音模块哦。各位就从里面选一个最喜欢的填进去就好啦。
+.card-link:hover .link-arrow {
+  transform: translateX(3px);
+}
 
-选择并且填写完成之后，各位就可以点击上面列表里面的链接，直接跳转到对应模块的详细配置文档，继续进行后续的设置工作啦。
+.card-link-main {
+  background: linear-gradient(135deg, rgba(147, 112, 219, 0.08) 0%, rgba(64, 224, 208, 0.05) 100%);
+  font-weight: 500;
+  border-left: 3px solid #9370db;
+}
 
-### `tts_base_config` TTS基础配置
-这个字段是用来设置语音模块的基础配置的，百灵要求各位直接保持默认。
+.card-link-main:hover {
+  background: linear-gradient(135deg, rgba(147, 112, 219, 0.15) 0%, rgba(64, 224, 208, 0.1) 100%);
+}
 
-- `stream_mode`：是否启用流式输出。
-- `post_process`：是否启用后处理（现阶段无效）。
+/* ===== Flow Section ===== */
+.flow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: var(--vp-c-bg-soft);
+  border-radius: 12px;
+  border: 1px solid var(--vp-c-divider);
+}
 
-这两个配置百灵要求你不要改动，除非你知道自己在做什么。实际作用请参考代码。
+.flow-card {
+  text-align: center;
+  padding: 1.25rem 1.5rem;
+  min-width: 140px;
+}
 
-### `debug` 调试配置
-这个字段现在只用来标识日志级别。
+.flow-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
 
-- `logging_level`：日志级别，默认为 `INFO` 。
+.flow-card h4 {
+  margin: 0 0 0.375rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
 
-::: tip 百灵疑难解答小贴士
-如果你在使用过程中遇到了问题，你可以看一看 疑难解答
-:::
+.flow-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+}
+
+.flow-arrow {
+  font-size: 1.5rem;
+  color: #9370db;
+  font-weight: 300;
+}
+
+/* ===== Help Section ===== */
+.help-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.help-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.help-card:hover {
+  border-color: rgba(147, 112, 219, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(147, 112, 219, 0.1);
+}
+
+.help-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.help-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.help-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--vp-c-text-3);
+  line-height: 1.5;
+}
+
+.help-card a {
+  color: #9370db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.help-card a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 640px) {
+  .tts-hero {
+    padding: 1.75rem 1.25rem;
+  }
+  
+  .hero-title {
+    font-size: 1.4rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .tts-nav-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-card-main {
+    grid-column: 1;
+  }
+  
+  .flow-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .help-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
