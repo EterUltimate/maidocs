@@ -29,7 +29,6 @@ export default defineConfig({
           { text: '功能介绍',link: '/features/index'},
           { text: '用户手册', link: '/manual/deployment/' },
           { text: '开发文档', link: '/develop/' },
-          {text: '官方Q群', link:'/manual/other/group'},
           {text: '意见反馈', link:'https://docs.qq.com/form/page/DWGxycXdKWG9PS1NH'},
           {
             text: 'GitHub', 
@@ -112,7 +111,7 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: '如何高效提问', link: '/manual/other/smart-question-guide' },
-                { text: '官方Q群', link: '/manual/other/group' },
+                { text: '官方社群', link: '/manual/other/group' },
                 { text: '最终用户许可协议', link: '/manual/other/EULA' },
               ]
             },
