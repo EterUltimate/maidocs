@@ -1,48 +1,46 @@
-# 📦 MaiBot Installation Methods
+---
+title: Deployment Overview
+---
 
-## One-Click Package Installation
-One-click installation package for Windows.
-Author: DrSmoothl
-- [GitHub](https://github.com/DrSmoothl/MaiBotOneKey) or get the latest version from the [community](/en/manual/other/group).
+# 🚀 MaiBot Deployment Overview
 
-## Installation Guide
+**MaiBot is a smart chatbot** that can chat with you, tell jokes, and answer questions. You just need to prepare two things to get it running:
 
-Suitable for users of all major operating systems.
-- [Installation Guide](installation)
+📱 **A QQ side account** (for logging in the bot)
+🔑 **An AI model API key** (like a key that lets the bot think and talk)
 
-## Docker Deployment
+## 📦 Choose Your Deployment Method
 
-Docker deployment uses containerization technology, simplifying environment configuration and ensuring consistency across different environments. Suitable for rapid deployment and testing.
-- [Docker Deployment Guide](mmc_deploy_docker)
+MaiBot offers 3 installation methods, choose any one:
 
-## Other Installation Methods
+| Method | Suitable For | Difficulty |
+|------|---------|------|
+| [Source Installation](./installation.md) | Users who want to tinker and control details | ⭐⭐ |
+| [Docker Deployment](./docker.md) | One-click deployment, server users | ⭐ |
+| [NapCat Adapter](./napcat.md) | Users who need to connect to QQ | ⭐⭐ |
 
-### Android Deployment (Community)
+::: tip 💡 Beginner Recommendation
+First time using? Follow this order:
 
-Android deployment allows running MaiBot on Android devices through the ZeroTermux environment, suitable for mobile users. Takes full advantage of mobile device portability.
-- [Android Deployment Guide](community/mmc_deploy_android)
+1. **Install MaiBot first** → [Installation Guide](./installation.md)
+2. **Then connect to QQ** → [NapCat Adapter](./napcat.md)
+3. **Finally configure AI model** → [Model Configuration](../configuration/model-config.md)
+:::
 
-### Kubernetes Deployment (Community)
+## ⚡ 3-Minute Quick Start
 
-Kubernetes deployment uses Helm Chart to deploy MaiBot in a Kubernetes cluster.
-- [Kubernetes Deployment Guide](community/mmc_deploy_kubernetes)
+If you already have Python environment and AI API ready, you can start right away:
 
-### 1Panel Deployment (Community)
+```bash
+# 1. Download MaiBot
+git clone https://github.com/MaiM-with-u/MaiBot.git
+cd MaiBot
 
-1Panel deployment quickly deploys MaiBot through the 1Panel panel, suitable for users who manage servers with 1Panel.  
-Author: Dreamwxz
-- [1Panel Deployment Guide](community/1panel)
+# 2. Install dependencies (like installing parts for the robot)
+uv sync
 
-### Linux One-Click Script Deployment (Community)
+# 3. Launch!
+uv run python bot.py
+```
 
-Linux one-click script deployment uses automated scripts to quickly deploy MaiBot on Linux systems, simplifying the deployment process.  
-Author: Astriora
-- [Linux One-Click Script Deployment Guide](community/linux_one_key)
-
-## Troubleshooting
-
-If you encounter issues during deployment, you can:
-
-1. Refer to common issues in [FAQ](/en/manual/faq/)
-2. Check the project's GitHub Issues
-3. Join the [MaiBot Community](/en/manual/other/group) for help
+The first startup will ask you to agree to the user agreement, just type "agree". That's it!

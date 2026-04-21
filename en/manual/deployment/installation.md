@@ -1,187 +1,120 @@
-# 📦 Installation Guide
-
-This guide will help you deploy the MaiBot chat robot. We recommend using [uv](https://docs.astral.sh/uv/) as the Python package manager, which offers faster package installation and better dependency management. The traditional pip method is also available.
-
-## Installation and Running
-
-### Prerequisites
-- [Python](https://www.python.org/) - Version 3.10 or higher
-- [Git](https://git-scm.com/) - (Optional) For easier MaiBot updates
-- [uv](https://docs.astral.sh/uv/) - (Optional) Python package manager
-- **Memory and Disk Space**: Please reserve at least 2GB of memory and 2GB of disk space
-
-### Download
-
-You can obtain MaiBot in two ways:
-
-**Method 1: Download from Releases (Recommended for beginners)**
-
-Visit the [GitHub Releases](https://github.com/MaiM-with-u/MaiBot/releases) page, download the latest version source code archive, and extract it to use.
-
-**Method 2: Clone with Git**
-
-```bash
-git clone https://github.com/MaiM-with-u/MaiBot.git
-```
-
-::: tip Domestic Mirror Acceleration
-If cloning is slow, you can use a mirror site for acceleration:
-```bash
-git clone https://gh-proxy.com/https://github.com/MaiM-with-u/MaiBot.git
-```
-:::
-
-### Create Virtual Environment
-
-:::tabs key:platform-venv
-== Windows
-
-```bash
-# uv
-uv venv
-# pip 
-python -m venv venv
-```
-
-== Linux
-
-```bash
-# uv
-uv venv
-# pip 
-python3 -m venv venv
-```
-
-== macOS
-
-```bash
-# uv
-uv venv
-# pip 
-python3 -m venv venv
-```
-:::
-
-### Activate Virtual Environment
-
-:::tabs key:platform-activate
-== Windows
-
-```bash
-.\venv\Scripts\activate
-```
-
-== Linux
-
-```bash
-source ./venv/bin/activate
-```
-
-== macOS
-
-```bash
-source ./venv/bin/activate
-```
-:::
-
-::: tip
-When using the **uv** method, you don't need to manually activate the virtual environment; the `uv run` command handles it automatically.
-:::
-
-### Install Dependencies
-
-:::tabs key:platform-deps
-== Windows
-
-```bash
-# uv
-uv pip install -r requirements.txt
-# pip 
-pip install -r requirements.txt
-```
-
-== Linux
-
-```bash
-# uv
-uv pip install -r requirements.txt
-# pip 
-pip install -r requirements.txt
-```
-
-== macOS
-
-```bash
-# uv
-uv pip install -r requirements.txt
-# pip 
-pip install -r requirements.txt
-```
-
-> The `quick-algo` package may require manual compilation on macOS. See [LPMM Knowledge Base](/en/manual/configuration/lpmm/lpmm) for details.
-:::
-
-### Run
-
-:::tabs key:platform-run
-== Windows
-
-```bash
-# uv
-uv run python bot.py
-# pip 
-python bot.py
-```
-
-== Linux
-
-```bash
-# uv
-uv run python3 bot.py
-# pip 
-python3 bot.py
-```
-
-== macOS
-
-```bash
-# uv
-uv run python bot.py
-# pip 
-python bot.py
-```
-:::
-
-## Configuration
-
-MaiBot supports configuration through WebUI:
-
-1. After starting the program, open `http://localhost:8001` in your browser (default port)
-2. Complete bot configuration, model configuration, and adapter configuration through WebUI, for detailed tutorial see [WebUI Configuration Guide](/en/manual/configuration/config_windows_onekey_withwebui).
-3. For QQ integration, go to [Adapters Documentation](/en/manual/adapters/).
-
-::: tip
-For manual configuration, refer to the [Configuration Guide](/en/manual/configuration/index)
-:::
-
-## Background Running (Linux)
-
-```bash
-# Install screen (if not installed)
-sudo apt install screen
-
-# Start
-screen -S maibot
-uv run python bot.py
-# Press Ctrl+a, then d to exit screen, program runs in background
-```
-
-## Common Issues
-
-- [Windows Common Issues](/en/manual/faq/windows)
-- [Linux Common Issues](/en/manual/faq/linux)
-- [macOS Common Issues](/en/manual/faq/macos)
-
+---
+title: Installation Guide
 ---
 
-Having issues? Please refer to the FAQ or join the [MaiBot Community](/en/manual/other/group) for help.
+# 📦 MaiBot Installation Guide
+
+This guide will walk you through installing and starting MaiBot, like assembling a smart toy!
+
+## 📥 Download MaiBot
+
+Download from [GitHub Release](https://github.com/MaiM-with-u/MaiBot/releases/), or clone the repository directly:
+
+::: code-group
+
+```bash [Stable (Recommended)]
+git clone https://github.com/MaiM-with-u/MaiBot.git
+cd MaiBot
+```
+
+```bash [Development (Beta)]
+git clone -b dev https://github.com/MaiM-with-u/MaiBot.git
+cd MaiBot
+```
+
+:::
+
+::: warning ⚠️ Note
+The `dev` branch has new features but may be unstable. First-time users should choose the `main` branch.
+:::
+
+## 🔧 Install Dependencies
+
+MaiBot uses [uv](https://github.com/astral-sh/uv) to manage dependencies (like pip, but faster and better).
+
+### Install uv (Like installing a new tool for your computer)
+
+::: code-group
+
+```bash [Windows]
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+```bash [macOS / Linux]
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+:::
+
+### Install Project Dependencies (Install parts for the robot)
+
+::: code-group
+
+```bash [Recommended: uv]
+uv sync
+```
+
+```bash [Backup: pip]
+pip install -r requirements.txt
+```
+
+:::
+
+`uv sync` will automatically install all needed components, including database, Web interface, etc.
+
+## ⚙️ Configure Your Bot
+
+MaiBot's configuration files are in the `config/` directory, like the robot's "brain settings":
+
+| File | Purpose | See Here |
+|------|------|------|
+| `bot_config.toml` | Basic bot info | [Configuration Overview](../configuration/index.md) |
+| `model_config.toml` | AI model settings | [Model Configuration](../configuration/model-config.md) |
+
+On first startup, MaiBot will automatically generate default configs. You need to change two things:
+
+1. **Set QQ Account**: Fill in `qq_account` in `bot_config.toml` (your bot's QQ number)
+2. **Set AI Model**: Fill in `api_key` in `model_config.toml` (your AI service key)
+
+## 🚀 Start Your Bot
+
+```bash
+uv run python bot.py
+```
+
+## ✅ User Agreement Confirmation
+
+First startup will ask you to agree to the user agreement, it's simple:
+
+**Just type "agree" in the terminal!** No need to remember any hash values.
+
+## 🔍 Common Problems (Don't be scared, beginners)
+
+### Wrong Python Version?
+
+MaiBot needs Python 3.10 or above. Check version:
+
+```bash
+python --version
+```
+
+::: tip 💡 Not sure which version to pick?
+Choose the latest Python 3.13 and you'll be fine!
+:::
+
+### Dependencies won't install?
+
+```bash
+# Clear cache and reinstall
+uv sync --reinstall
+```
+
+### Startup stuck?
+
+- Check if configuration files are filled correctly
+- See if it's a network issue
+- Try restarting: Ctrl+C to stop, then run again
+
+### Want to restart the bot?
+
+Just Ctrl+C to stop, then run `uv run python bot.py` again. The bot will automatically resume state.

@@ -1,56 +1,97 @@
-# MaiBot: Anthropomorphic AI Chatbot
-
-MaiBot is an open-source intelligent chatbot focused on providing **anthropomorphic interaction experiences** for group chats (like QQ groups). It's based on a multi-model collaboration architecture, combining natural language processing with biomimetic thinking planning, aiming to make conversations more natural and warm.
-
-## Our Design Philosophy
-
-MaiBot's core goal is **anthropomorphism** - we believe that an AI that can understand emotions, remember conversations, and have personality can integrate into communities better than a purely functional robot. Therefore, MaiBot is designed as a **virtual companion that makes mistakes, learns, and grows**, not a perfect tool.
-
-## 🧠 Anthropomorphic Features
-
-MaiBot achieves high anthropomorphism through the following features:
-
-- **Natural Conversation Style**: Context-aware response mechanism, avoiding mechanical replies, close to human daily communication habits.
-- **Emotion Perception and Expression**: Built-in emotion system that can recognize user emotions and adjust tone, making interactions more empathetic.
-- **Persistent Memory System**: Actively records conversation details (like interests, habits) and naturally references them in subsequent chats, maintaining conversation continuity.
-- **Dynamic Personality Evolution**: After each interaction, MaiBot fine-tunes its personality, gradually adapting to the user's communication style.
-- **Stickers and Emojis**: Supports understanding and using stickers in QQ groups, enhancing expressiveness.
-- **Learning Group Chat Slang**: Automatically learns group-specific memes and slang, incorporating them into its expressions to quickly integrate into community culture.
-
-## 🤖 Technical Implementation
-
-To achieve realistic interaction, MaiBot adopts the following technical solutions:
-
-- **Multi-Model Collaboration**: Multiple large language models (LLMs) divide responsibilities for understanding, planning, and generation, improving conversation naturalness and intelligence.
-- **Biomimetic Thinking Planning**: References cognitive science theories, designs modular thinking processes, simulating human decision-making during chats.
-- **Emotion and Memory Engine**: Emotion module analyzes user emotions in real-time, memory module persistently stores conversation history, ensuring each interaction has contextual support.
-- **Behavior Planning Module**: Dynamically determines speaking timing based on time, context, group activity, etc., avoiding spam or silence, behaving more like a real group member.
-
-## 🏗️ Architecture Overview
-
-MaiBot is developed based on **Python**, using modular design. Core components include:
-
-- **Chat Controller**: Coordinates the entire conversation flow.
-- **Memory Manager**: Responsible for storing and retrieving short-term and long-term memories.
-- **Emotion Expressor**: Handles emotion recognition and expression.
-- **Personality Configurator**: Manages the robot's personality settings.
-- **Plugin System**: Provides rich API and event interfaces, making it easy for developers to extend functionality.
-
-MaiBot supports multiple deployment methods (Docker, Windows, Linux, macOS) and provides a user-friendly WebUI configuration interface, allowing non-technical users to get started easily.
-
-## 🌍 Open Source and Community
-
-MaiBot is a completely open-source community project, using the **GPL-3.0** license. We welcome every user and developer to participate:
-
-- **Report Issues and Suggestions**: Report bugs or request features in the [GitHub repository](https://github.com/MaiM-with-u/MaiBot).
-- **Contribute Code**: Improve core functionality or add new features via Pull Request.
-- **Develop Plugins**: Use the plugin system to add custom skills to MaiBot, enriching her capabilities.
-- **Customize Personality**: Adjust MaiBot's personality and tone through configuration files, creating your unique companion.
-
-## Getting Started
-
-Ready to experience the charm of anthropomorphic AI? Please refer to the [User Guide](/en/manual/deployment/) for detailed installation and configuration steps. If you have any questions, welcome to join our user community group to discuss with other MaiBot enthusiasts.
-
+---
+title: Features
 ---
 
-*MaiBot - Not just a robot, but your virtual friend.*
+# Features
+
+MaiBot (Maimai) is more than just a chatbot - she's a digital life form dedicated to interacting in authentic human style. Here are her core capabilities.
+
+<div class="feature-cards">
+
+<div class="feature-card">
+
+### 💬 Intelligent Message Pipeline
+
+Complete processing pipeline from message reception to final response, supporting Hook interception, command distribution, filtering checks, and flexible routing.
+
+[Learn about Message Pipeline →](/en/manual/features/message-pipeline)
+
+</div>
+
+<div class="feature-card">
+
+### 🧠 Maisaka Reasoning Engine
+
+Multi-round internal reasoning system based on tool calls. Planner decision-making, Timing Gate rhythm control, automatic interruption and retry, making conversation flow naturally.
+
+[Learn about Maisaka →](/en/manual/features/maisaka-reasoning)
+
+</div>
+
+<div class="feature-card">
+
+### ❤️ Long-term Memory System
+
+A-Memorix memory engine provides knowledge graphs, conversation summaries, and character profiles. Automatic write-back mechanism lets Maimai continuously accumulate understanding of you.
+
+[Learn about Memory System →](/en/manual/features/memory-system)
+
+</div>
+
+<div class="feature-card">
+
+### 📖 Expression & Jargon Learning
+
+Automatically extracts expression styles and group jargon from conversations, infers meanings through LLM and continuously improves, making Maimai more like people around you.
+
+[Learn about Learning System →](/en/manual/features/learning)
+
+</div>
+
+<div class="feature-card">
+
+### 😊 Emoji System
+
+Automatic emoji recognition based on VLM, emotion tag generation and intelligent selection, making conversations more vivid.
+
+[Learn about Emoji System →](/en/manual/features/emoji-system)
+
+</div>
+
+<div class="feature-card">
+
+### 🔌 MCP Integration
+
+Supports Model Context Protocol, connects to external tool servers, unlimited expansion of Maimai's capability boundaries.
+
+[Learn about MCP →](/en/manual/features/mcp)
+
+</div>
+
+</div>
+
+<style>
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.feature-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.feature-card:hover {
+  border-color: var(--vp-c-brand);
+  box-shadow: 0 2px 12px var(--vp-c-brand-soft);
+}
+.feature-card h3 {
+  margin-top: 0;
+  font-size: 1.1em;
+}
+.feature-card a {
+  font-size: 0.9em;
+}
+</style>

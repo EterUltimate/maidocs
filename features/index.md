@@ -1,56 +1,97 @@
-# MaiBot：拟人化AI聊天机器人
-
-MaiBot 是一款开源的智能聊天机器人，专注于为群组聊天（如QQ群）提供**拟人化的交互体验**。她基于多模型协作架构，结合自然语言处理与仿生思考规划，旨在让对话更自然、更有温度。
-
-## 我们的设计理念
-
-MaiBot 的核心目标是**拟人化**——我们相信，一个能够理解情感、记忆对话并拥有个性的AI，比单纯的功能性机器人更能融入社群。因此，MaiBot 被设计为一个**会犯错、会学习、会成长**的虚拟伙伴，而非完美的工具。
-
-## 🧠 拟人化功能
-
-MaiBot 通过以下功能实现高度拟人化：
-
-- **自然对话风格**：基于上下文理解的回复机制，避免机械式应答，贴近人类日常交流习惯。
-- **情绪感知与表达**：内置情绪系统，能够识别用户情绪并调整语气，让互动更具同理心。
-- **持久记忆系统**：主动记录对话细节（如兴趣、习惯），并在后续聊天中自然引用，保持对话连贯性。
-- **动态个性演化**：每次交互后，MaiBot 会微调自身人格，逐渐适应用户的交流风格。
-- **表情包与表情符号**：支持在QQ群中理解、使用表情包，增强表达的生动性。
-- **学习群聊黑话**：自动学习群内特有的梗、俚语，并融入自己的表达，快速融入社区文化。
-
-## 🤖 技术实现
-
-为了实现真实感交互，MaiBot 采用了以下技术方案：
-
-- **多模型协作**：多个大型语言模型（LLM）分工负责理解、规划与生成，提升对话的自然度与智能度。
-- **仿生思考规划**：参考认知科学理论，设计模块化思考流程，模拟人类在聊天时的决策过程。
-- **情感与记忆引擎**：情感模块实时分析用户情绪，记忆模块持久化存储对话历史，确保每次交互都有上下文支持。
-- **行为规划模块**：根据时间、上下文、群活跃度等因素动态决定发言时机，避免刷屏或沉默，更像真实群成员。
-
-## 🏗️ 架构概览
-
-MaiBot 基于 **Python** 开发，采用模块化设计，核心组件包括：
-
-- **聊天控制器**：协调整个对话流程。
-- **记忆管理器**：负责短期与长期记忆的存储与检索。
-- **情感表达器**：处理情绪识别与表达。
-- **个性配置器**：管理机器人的人格设定。
-- **插件系统**：提供丰富的 API 和事件接口，方便开发者扩展功能。
-
-MaiBot 支持多种部署方式（Docker、Windows、Linux、macOS），并提供了友好的 WebUI 配置界面，让非技术用户也能轻松上手。
-
-## 🌍 开源与社区
-
-MaiBot 是一个完全开源的社区项目，采用 **GPL-3.0** 许可证。我们欢迎每一位用户和开发者参与进来：
-
-- **提交问题与建议**：在 [GitHub 仓库](https://github.com/MaiM-with-u/MaiBot) 报告 bug 或提出功能需求。
-- **贡献代码**：通过 Pull Request 改进核心功能或添加新特性。
-- **开发插件**：利用插件系统为 MaiBot 增加自定义技能，丰富她的能力。
-- **定制个性**：通过配置文件调整 MaiBot 的性格、语气，打造属于你的独一无二的伙伴。
-
-## 开始使用
-
-准备好体验拟人化 AI 的魅力了吗？请参阅 [用户指南](/manual/) 获取详细的安装与配置步骤。如果有任何疑问，欢迎加入我们的用户交流群，与其他 MaiBot 爱好者一起讨论。
-
+---
+title: 功能介绍
 ---
 
-*MaiBot —— 不止是机器人，更是你的虚拟朋友。*
+# 功能介绍
+
+MaiBot（麦麦）不仅仅是一个聊天机器人——她是一个致力于以真实人类风格进行交互的数字生命。以下是她拥有的核心能力。
+
+<div class="feature-cards">
+
+<div class="feature-card">
+
+### 💬 智能对话管线
+
+从消息接收到最终回复的完整处理管线，支持 Hook 拦截、命令分发、过滤检查和灵活路由。
+
+[了解消息管线 →](../manual/features/message-pipeline.md)
+
+</div>
+
+<div class="feature-card">
+
+### 🧠 Maisaka 推理引擎
+
+基于工具调用的多轮内部推理系统。Planner 决策、Timing Gate 节奏控制、自动打断与重试，让对话节奏自然流畅。
+
+[了解 Maisaka →](../manual/features/maisaka-reasoning.md)
+
+</div>
+
+<div class="feature-card">
+
+### ❤️ 长期记忆系统
+
+A-Memorix 记忆引擎提供知识图谱、对话摘要和人物画像，自动写回机制让麦麦持续积累对你的了解。
+
+[了解记忆系统 →](../manual/features/memory-system.md)
+
+</div>
+
+<div class="feature-card">
+
+### 📖 表达与黑话学习
+
+自动从对话中提取表达风格和群体黑话，通过 LLM 推断含义并逐步完善，让麦麦越来越像你身边的人。
+
+[了解学习系统 →](../manual/features/learning.md)
+
+</div>
+
+<div class="feature-card">
+
+### 😊 表情包系统
+
+基于 VLM 的表情包自动识别、情绪标签生成和智能选择，让对话更生动。
+
+[了解表情系统 →](../manual/features/emoji-system.md)
+
+</div>
+
+<div class="feature-card">
+
+### 🔌 MCP 集成
+
+支持 Model Context Protocol，连接外部工具服务器，无限扩展麦麦的能力边界。
+
+[了解 MCP →](../manual/features/mcp.md)
+
+</div>
+
+</div>
+
+<style>
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.feature-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.feature-card:hover {
+  border-color: var(--vp-c-brand);
+  box-shadow: 0 2px 12px var(--vp-c-brand-soft);
+}
+.feature-card h3 {
+  margin-top: 0;
+  font-size: 1.1em;
+}
+.feature-card a {
+  font-size: 0.9em;
+}
+</style>

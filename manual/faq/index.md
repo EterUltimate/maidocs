@@ -1,330 +1,199 @@
+---
+title: ❓ 常见问题
+---
+
 # ❓ 常见问题
 
-<div class="faq-hero">
-  <div class="hero-content">
-    <h2 class="hero-title">问题排查与解答</h2>
-    <p class="hero-subtitle">汇总部署、配置与日常使用中最常见的问题，帮助您快速定位并解决问题</p>
-    <div class="hero-decoration"></div>
-  </div>
-</div>
+新手最容易遇到的问题，都在这里了！
 
-<div class="faq-nav-grid">
+## 💰 费用相关
 
-<div class="nav-card">
+### MaiBot 需要花钱吗？
+**答**：MaiBot 本身是免费的，但 AI 模型要花钱。
 
-<div class="card-header">
-  <span class="card-icon">❓</span>
-  <div class="card-title-group">
-    <h3 class="card-title">常见问题概览</h3>
-    <p class="card-desc">通用问题与解决方案</p>
-  </div>
-</div>
+**具体情况**：
+- 💡 **MaiBot 软件** - 完全免费，开源的
+- 💳 **AI 模型** - 要付费，比如 DeepSeek、OpenAI 等
+- 📊 **大概费用** - 聊天不多一个月几块钱就够了
 
-<div class="card-links">
-  <a href="./faq-overview" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>查看全部常见问题</span>
-  </a>
-</div>
+**省钱技巧**：
+- 用便宜的模型（DeepSeek 很便宜）
+- 设置回复频率限制
+- 关闭不必要的功能
 
-</div>
+### 用什么 AI 模型最好？
+**推荐**：新手用 DeepSeek，便宜又好用！
 
-<div class="nav-card">
+**对比**：
+| 模型 | 价格 | 效果 | 推荐度 |
+|------|------|------|--------|
+| DeepSeek | ⭐ 很便宜 | ⭐⭐⭐⭐ 很好 | ⭐⭐⭐⭐⭐ 强烈推荐 |
+| 千问 | ⭐⭐ 便宜 | ⭐⭐⭐⭐ 很好 | ⭐⭐⭐⭐ 推荐 |
+| GPT-3.5 | ⭐⭐⭐ 中等 | ⭐⭐⭐⭐⭐ 最好 | ⭐⭐⭐ 可以试试 |
 
-<div class="card-header">
-  <span class="card-icon">🪟</span>
-  <div class="card-title-group">
-    <h3 class="card-title">Windows 问题</h3>
-    <p class="card-desc">Windows 系统相关问题</p>
-  </div>
-</div>
+### QQ 号会被封吗？
+**答**：有风险，但可以用小号避免。
 
-<div class="card-links">
-  <a href="./windows" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>Windows 常见问题</span>
-  </a>
-</div>
+**建议**：
+- 🔒 **用小号** - 不要用主号，降低风险
+- ⚠️ **注意言行** - 不要说违规内容
+- 🛡️ **分散风险** - 多个小号轮换使用
 
-</div>
+## 🚀 使用问题
 
-<div class="nav-card">
+### 启动不了怎么办？
+**常见原因和解决**：
 
-<div class="card-header">
-  <span class="card-icon">🐧</span>
-  <div class="card-title-group">
-    <h3 class="card-title">Linux 问题</h3>
-    <p class="card-desc">Linux 系统相关问题</p>
-  </div>
-</div>
+1️⃣ **Python 版本不对**
+```
+# 检查版本
+python --version
+# 需要 3.10 以上
+```
 
-<div class="card-links">
-  <a href="./linux" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>Linux 常见问题</span>
-  </a>
-</div>
+2️⃣ **配置文件缺失**
+```
+# 第一次启动会自动创建
+# 如果没有，手动创建 config 文件夹
+```
 
-</div>
+3️⃣ **端口被占用**
+```
+# 改端口就行
+# WebUI 默认 8001，可以改成 8002、8003 等
+```
 
-<div class="nav-card">
+### 机器人不回复消息？
+**检查步骤**：
 
-<div class="card-header">
-  <span class="card-icon">🍎</span>
-  <div class="card-title-group">
-    <h3 class="card-title">macOS 问题</h3>
-    <p class="card-desc">macOS 系统相关问题</p>
-  </div>
-</div>
+1. **看日志** - 有没有报错信息？
+2. **检查配置** - API Key 填对了没？
+3. **测试连接** - 网络能访问模型服务吗？
+4. **看权限** - QQ 群里有发言权限吗？
 
-<div class="card-links">
-  <a href="./macos" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>macOS 常见问题</span>
-  </a>
-</div>
+**常见错误**：
+- ❌ API Key 错了 → 401 错误
+- ❌ 网络不通 → 连接超时
+- ❌ 被禁言了 → 发不出消息
 
-</div>
+### 配置文件格式错误？
+**新手建议**：
+- 🖥️ **用 WebUI 改配置** - 不会出错
+- ✏️ **手动编辑要小心** - 符号都要对
+- 💾 **改前备份** - 错了还能恢复
 
-</div>
+**格式要点**：
+```toml
+# 字符串要加引号
+name = "我的机器人"
 
-## 获取帮助
+# 数字不要引号
+port = 8001
 
-<div class="help-container">
+# 布尔值小写
+enabled = true
+```
 
-<div class="help-card">
-  <div class="help-icon">📖</div>
-  <h4>查阅手册</h4>
-  <p>浏览用户手册的相关章节寻找答案</p>
-</div>
+## 🤖 功能问题
 
-<div class="help-card">
-  <div class="help-icon">💬</div>
-  <h4>加入社群</h4>
-  <p>加入<a href="../other/group">官方社群</a>获取帮助</p>
-</div>
+### 可以同时服务多个群吗？
+**答**：当然可以！一个 MaiBot 可以服务很多群。
 
-<div class="help-card">
-  <div class="help-icon">🐛</div>
-  <h4>提交 Issue</h4>
-  <p>在 GitHub 上提交问题反馈</p>
-</div>
+**设置方法**：
+- 在配置里添加多个群号
+- 每个群可以不同性格
+- 统一管理很方便
 
-</div>
+### 数据存在哪里？安全吗？
+**答**：所有数据都存在你自己的电脑上。
 
-<style scoped>
-/* ===== Hero Section ===== */
-.faq-hero {
-  position: relative;
-  padding: 2.5rem 2rem;
-  margin-bottom: 2.5rem;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(50, 205, 50, 0.08) 100%);
-  border: 1px solid rgba(255, 140, 0, 0.15);
-  overflow: hidden;
-}
+**存储位置**：
+- 💾 **聊天记录** - 本地数据库
+- 🧠 **记忆内容** - 本地文件
+- ⚙️ **配置文件** - 本地磁盘
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
+**安全提醒**：
+- 🔒 **不会上传网络** - 数据都在本地
+- 🏠 **隐私保护好** - 别人看不到
+- 💿 **定期备份** - 防止丢失
 
-.hero-title {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  background: linear-gradient(120deg, #ff8c00 30%, #32cd32);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+### MaiBot 支持手机部署吗？
+**答**：理论上可以，但不推荐。
 
-.hero-subtitle {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--vp-c-text-2);
-  max-width: 600px;
-  line-height: 1.6;
-}
+**原因**：
+- 📱 **手机性能有限** - 运行可能卡顿
+- 🔋 **耗电量大** - 手机发热严重
+- 📶 **网络不稳定** - 容易掉线
 
-.hero-decoration {
-  position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
+**建议**：
+- 🖥️ **用电脑** - 台式机、笔记本都行
+- ☁️ **用云服务器** - 24 小时在线
+- 🏠 **树莓派** - 小型设备也可以
 
-/* ===== Navigation Grid ===== */
-.faq-nav-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 3rem;
-}
+### 一定要用 QQ 吗？可以用别的平台吗？
+**答**：目前主要支持 QQ，其他平台在开发中。
 
-.nav-card {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+**现状**：
+- ✅ **QQ** - 支持最好，功能最全
+- ✅ **语音** - 可以发语音消息
+- 🚧 **微信** - 正在开发
+- 📋 **其他** - 未来会支持更多
 
-.nav-card:hover {
-  border-color: rgba(255, 140, 0, 0.3);
-  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.12);
-  transform: translateY(-4px);
-}
+## 🔧 技术问题
 
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
+### 回复太慢怎么办？
+**优化方法**：
+1. **换快模型** - DeepSeek 响应很快
+2. **减少上下文** - 不要给太多历史记录
+3. **检查网络** - 网络慢会影响速度
+4. **关闭不必要功能** - 插件太多会拖慢速度
 
-.card-icon {
-  font-size: 2rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
+### 内存占用太高？
+**节省内存**：
+- 📉 **减少记忆容量** - 少记一些东西
+- 🗑️ **清理无用数据** - 定期删除垃圾
+- 🔌 **少用插件** - 插件会占内存
+- 💻 **升级配置** - 加内存条最直接
 
-.card-title-group {
-  flex: 1;
-}
+### 想换 AI 模型怎么换？
+**简单步骤**：
+1. 打开 WebUI → 配置管理
+2. 找到模型设置
+3. 选择新模型
+4. 保存后立即生效
 
-.card-title {
-  margin: 0 0 0.25rem 0;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-}
+## 💡 新手建议
 
-.card-desc {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-3);
-}
+### 第一次用要注意什么？
+1. **先用小号测试** - 避免主号风险
+2. **从简单配置开始** - 不要一次开太多功能
+3. **多看日志** - 有问题日志会告诉你
+4. **加入交流群** - 有问题可以问别人
 
-.card-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+### 怎么让机器人更聪明？
+1. **教它知识** - 用记忆管理功能
+2. **调人格设置** - 让性格更鲜明
+3. **装有用插件** - 增加各种能力
+4. **多和它聊天** - 它会越学越聪明
 
-.card-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 0.875rem;
-  border-radius: 8px;
-  color: var(--vp-c-text-2);
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  background: rgba(255, 140, 0, 0.03);
-}
+### 哪里能学到更多？
+- 📖 **看文档** - 这个文档网站
+- 💬 **加群组** - 和其他用户交流
+- 🔍 **搜教程** - 网上有很多经验分享
+- 🐱 **看 GitHub** - 最新的更新和讨论
 
-.card-link:hover {
-  background: rgba(255, 140, 0, 0.1);
-  color: #ff8c00;
-  padding-left: 1.125rem;
-}
+## 🆘 遇到解决不了的问题？
 
-.link-arrow {
-  color: #ff8c00;
-  font-size: 0.8rem;
-  transition: transform 0.2s ease;
-}
+### 获取帮助的途径：
+1. **先看 FAQ** - 可能已经有答案
+2. **看日志** - 错误信息很重要
+3. **搜一搜** - 网上可能有人遇到过
+4. **问一问** - 加群问其他用户
+5. **提 Issue** - GitHub 上提交问题
 
-.card-link:hover .link-arrow {
-  transform: translateX(3px);
-}
-
-.card-link-main {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(50, 205, 50, 0.05) 100%);
-  font-weight: 500;
-  border-left: 3px solid #ff8c00;
-}
-
-.card-link-main:hover {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(50, 205, 50, 0.1) 100%);
-}
-
-/* ===== Help Section ===== */
-.help-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.25rem;
-}
-
-.help-card {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.help-card:hover {
-  border-color: rgba(255, 140, 0, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(255, 140, 0, 0.1);
-}
-
-.help-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.help-card h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-}
-
-.help-card p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-3);
-  line-height: 1.5;
-}
-
-.help-card a {
-  color: #ff8c00;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.help-card a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Responsive Design ===== */
-@media (max-width: 640px) {
-  .faq-hero {
-    padding: 1.75rem 1.25rem;
-  }
-  
-  .hero-title {
-    font-size: 1.4rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.9rem;
-  }
-  
-  .faq-nav-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .help-container {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+### 提问时要提供的信息：
+- 🖥️ **系统信息** - Windows/Linux/Mac？
+- 📋 **错误日志** - 具体的报错信息
+- ⚙️ **配置信息** - 相关配置内容
+- 🔢 **版本信息** - MaiBot 版本号
+- 🎯 **复现步骤** - 怎么操作会出错

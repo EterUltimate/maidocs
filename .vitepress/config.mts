@@ -1,11 +1,12 @@
 import { defineConfig } from 'vitepress'
-import { MermaidPlugin, MermaidMarkdown } from "vitepress-plugin-mermaid";
-import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
+import { MermaidPlugin, MermaidMarkdown } from "vitepress-plugin-mermaid"
+import { tabsMarkdownPlugin } from "vitepress-plugin-tabs"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "MaiBot Docs",
   description: "MaiBot Development and Usage Guide",
+  ignoreDeadLinks: 'localhostLinks',
   locales: {
     root: {
       label: '简体中文',
@@ -14,7 +15,7 @@ export default defineConfig({
       description: 'MaiBot 开发与使用指南',
       themeConfig: {
         editLink: {
-          pattern: "https://github.com/Mai-with-u/docs/edit/main/:path",
+          pattern: "https://github.com/MaiM-with-u/docs/edit/main/:path",
           text: "在 GitHub 上编辑此页"
         },
         lastUpdated: {
@@ -26,12 +27,11 @@ export default defineConfig({
         },
         nav: [
           { text: '首页', link: '/' },
-          { text: '功能介绍',link: '/features/index'},
+          { text: '功能介绍', link: '/features/' },
           { text: '用户手册', link: '/manual/deployment/' },
           { text: '开发文档', link: '/develop/' },
-          {text: '意见反馈', link:'https://docs.qq.com/form/page/DWGxycXdKWG9PS1NH'},
           {
-            text: 'GitHub', 
+            text: 'GitHub',
             items: [
               { text: 'MaiBot', link: 'https://github.com/MaiM-with-u/MaiBot' },
               { text: 'MaiBot Docs', link: 'https://github.com/MaiM-with-u/docs' },
@@ -41,142 +41,118 @@ export default defineConfig({
         sidebar: {
           '/manual/': [
             {
-              text: '安装方法',
+              text: '快速入门',
               collapsed: false,
               items: [
-                { text: '安装方式', link: '/manual/deployment/' },
+                { text: '五分钟快速上手', link: '/manual/getting-started/' },
+              ]
+            },
+            {
+              text: '部署与安装',
+              collapsed: false,
+              items: [
+                { text: '部署概览', link: '/manual/deployment/' },
                 { text: '安装指南', link: '/manual/deployment/installation' },
-                { text: 'Docker部署', link: '/manual/deployment/mmc_deploy_docker' },
-                { text: '其他部署方式', 
-                  collapsed: true, 
-                  items: [
-                    { text: 'Android部署', link: '/manual/deployment/community/mmc_deploy_android' },
-                    { text: 'Kubernetes部署', link: '/manual/deployment/community/mmc_deploy_kubernetes' },
-                    { text: '1Panel 部署(社区)', link: '/manual/deployment/community/1panel' },
-                    { text: 'Linux一键部署(社区)', link: '/manual/deployment/community/linux_one_key' },
-                  ],
-                },
+                { text: 'Docker 部署', link: '/manual/deployment/docker' },
+                { text: 'NapCat 适配器', link: '/manual/deployment/napcat' },
               ]
             },
             {
-              text: '配置详解',
+              text: '配置说明',
               collapsed: false,
               items: [
-                { text: '快速入门', link: '/manual/configuration/' },
-                { text: '关于配置指南', link: '/manual/configuration/configuration_standard' },
-                { text: '关于模型配置', link: '/manual/configuration/configuration_model_standard' },
-                { text: 'WebUI配置指南', link: '/manual/configuration/config_windows_onekey_withwebui'},
-                { text: '关于LPMM', 
-                  collapsed: true, 
-                  items: [
-                    { text: '使用说明', link: '/manual/configuration/lpmm/lpmm' },
-                    { text: '手动编译说明', link: '/manual/configuration/lpmm/lpmm_compile_and_install'},
-                    { text: '导入文件格式', link: '/manual/configuration/lpmm/lpmm_knowledge_template' },
-                  ]
-                },
-                { text: '关于备份', link: '/manual/configuration/backup' },
+                { text: '配置概览', link: '/manual/configuration/' },
+                { text: 'Bot 配置', link: '/manual/configuration/bot-config' },
+                { text: '人格配置', link: '/manual/configuration/personality-config' },
+                { text: '聊天配置', link: '/manual/configuration/chat-config' },
+                { text: '记忆配置', link: '/manual/configuration/memory-config' },
+                { text: '模型配置', link: '/manual/configuration/model-config' },
               ]
             },
             {
-              text: '适配器列表',
+              text: '功能介绍',
               collapsed: false,
               items: [
-                { text: 'Adapters 文档中心', link: '/manual/adapters' },
-                { text: 'MaiBot Napcat Adapter', link: '/manual/adapters/napcat' },
-                { text: 'GO-CQ Adapter', link: '/manual/adapters/gocq' },
-                {
-                  text: 'MaiBot TTS Adapter', 
-                  collapsed: true, 
-                  items: [
-                    { text: '基本介绍', link: '/manual/adapters/tts/' },
-                    { text: 'GPT_Sovits TTS', link: '/manual/adapters/tts/gpt_sovits' },
-                    { text: '豆包 TTS', link: '/manual/adapters/tts/doubao_tts' },
-                    { text: '千问Omni TTS', link: '/manual/adapters/tts/qwen_omni' },
-                  ]
-                },
+                { text: '功能概览', link: '/manual/features/' },
+                { text: '消息是怎么处理的', link: '/manual/features/message-pipeline' },
+                { text: 'MaiBot 是怎么思考的', link: '/manual/features/maisaka-reasoning' },
+                { text: 'MaiBot 的记忆', link: '/manual/features/memory-system' },
+                { text: '学说话', link: '/manual/features/learning' },
+                { text: '表情包系统', link: '/manual/features/emoji-system' },
+                { text: 'MCP 工具', link: '/manual/features/mcp' },
+              ]
+            },
+            {
+              text: 'WebUI 管理',
+              collapsed: false,
+              items: [
+                { text: 'WebUI 概览', link: '/manual/webui/' },
+                { text: '配置管理', link: '/manual/webui/config-management' },
+                { text: '记忆管理', link: '/manual/webui/memory-management' },
+                { text: '插件管理', link: '/manual/webui/plugin-management' },
+                { text: '聊天与统计', link: '/manual/webui/chat-stats' },
+              ]
+            },
+            {
+              text: '适配器',
+              collapsed: false,
+              items: [
+                { text: '适配器概览', link: '/manual/adapters/' },
+                { text: 'QQ 连接', link: '/manual/adapters/napcat' },
+                { text: '语音合成', link: '/manual/adapters/tts' },
               ]
             },
             {
               text: '常见问题',
               collapsed: false,
               items: [
-                { text: 'FAQ 概览', link: '/manual/faq/' },
-                { text: 'Windows 常见问题', link: '/manual/faq/windows' },
-                { text: 'Linux 常见问题', link: '/manual/faq/linux' },
-                { text: 'macOS 常见问题', link: '/manual/faq/macos' },
+                { text: 'FAQ', link: '/manual/faq/' },
               ]
             },
-            {
-              text: '参考资源',
-              collapsed: false,
-              items: [
-                { text: '如何高效提问', link: '/manual/other/smart-question-guide' },
-                { text: '官方社群', link: '/manual/other/group' },
-                { text: '最终用户许可协议', link: '/manual/other/EULA' },
-              ]
-            },
-            { text: '更新日志', link: '/manual/other/changelog' },
           ],
           '/develop/': [
             {
-              text: '开发文档',
+              text: '架构详解',
+              collapsed: false,
               items: [
-                { text: '介绍', link: '/develop/' },
-                { text: '开发者与代码规范', link: '/develop/develop_standard' },
+                { text: '消息管线', link: '/develop/architecture/message-pipeline' },
+                { text: 'Maisaka 推理引擎', link: '/develop/architecture/maisaka-reasoning' },
+                { text: '记忆系统', link: '/develop/architecture/memory-system' },
+                { text: 'WebUI 内部机制', link: '/develop/architecture/webui-internals' },
               ]
             },
             {
-              text: '适配器开发',
+              text: '开发文档',
               collapsed: false,
               items: [
-                { text: '开发综述', link: '/develop/adapter_develop/' },
-                { text: 'Adapter 开发指南', link: '/develop/adapter_develop/develop_adapter' },
+                { text: '架构概览', link: '/develop/' },
+                { text: '架构设计', link: '/develop/architecture' },
+                { text: '贡献指南', link: '/develop/contributing' },
               ]
             },
             {
               text: '插件开发',
               collapsed: false,
               items: [
-                { text: '开发指南', link: '/develop/plugin_develop/' },
-                { text: '快速开始', link: '/develop/plugin_develop/quick-start'},
-                { text: 'Manifest系统指南', link: '/develop/plugin_develop/manifest-guide' },
-                { text: 'Actions系统', link: '/develop/plugin_develop/action-components' },
-                { text: '命令处理系统', link: '/develop/plugin_develop/command-components' },
-                { text: '工具系统', link: '/develop/plugin_develop/tool-components' },
-                { text: '配置管理指南', link: '/develop/plugin_develop/configuration-guide' },
-                { text: '依赖管理', link: '/develop/plugin_develop/dependency-management' },
-                { text: 'WebUI集成', link: '/develop/plugin_develop/plugin-config-schema' },
-                { text: 'API参考',
-                  collapsed: true,
-                  items: [
-                    { text: '发送API', link: '/develop/plugin_develop/api/send-api' },
-                    { text: '消息API', link: '/develop/plugin_develop/api/message-api' },
-                    { text: '聊天流API', link: '/develop/plugin_develop/api/chat-api' },
-                    { text: 'LLM API', link: '/develop/plugin_develop/api/llm-api' },
-                    { text: '回复生成器API', link: '/develop/plugin_develop/api/generator-api' },
-                    { text: '表情包API', link: '/develop/plugin_develop/api/emoji-api' },
-                    { text: '人物信息API', link: '/develop/plugin_develop/api/person-api' },
-                    { text: '数据库API', link: '/develop/plugin_develop/api/database-api' },
-                    { text: '配置API', link: '/develop/plugin_develop/api/config-api' },
-                    { text: '插件API', link: '/develop/plugin_develop/api/plugin-manage-api' },
-                    { text: '组件API', link: '/develop/plugin_develop/api/component-manage-api' },
-                    { text: '日志API', link: '/develop/plugin_develop/api/logging-api' },
-                    { text: '工具API', link: '/develop/plugin_develop/api/tool-api'}
-                  ]
-                },
+                { text: '开发指南', link: '/develop/plugin-dev/' },
+                { text: 'Manifest', link: '/develop/plugin-dev/manifest' },
+                { text: 'Hooks', link: '/develop/plugin-dev/hooks' },
+                { text: 'Actions', link: '/develop/plugin-dev/actions' },
+                { text: 'Commands', link: '/develop/plugin-dev/commands' },
+                { text: 'Tools', link: '/develop/plugin-dev/tools' },
+                { text: '配置管理', link: '/develop/plugin-dev/config' },
+                { text: 'API 参考', link: '/develop/plugin-dev/api-reference' },
               ]
             },
             {
-              text: 'Maim_Message参考',
+              text: '适配器开发',
               collapsed: false,
               items: [
-                { text: 'Maim_Message 概述', link: '/develop/maim_message/' },
-                { text: 'Message_Base', link: '/develop/maim_message/message_base' },
-                { text: 'Router', link: '/develop/maim_message/router' },
-                { text: '命令参数表', link: '/develop/maim_message/command_args'}
+                { text: '开发指南', link: '/develop/adapter-dev/' },
+                { text: 'PlatformIO 驱动', link: '/develop/adapter-dev/platform-io' },
               ]
-            }
-          ]
+            },
+          ],
         },
       }
     },
@@ -188,7 +164,7 @@ export default defineConfig({
       link: '/en/',
       themeConfig: {
         editLink: {
-          pattern: "https://github.com/Mai-with-u/docs/edit/main/:path",
+          pattern: "https://github.com/MaiM-with-u/docs/edit/main/:path",
           text: "Edit this page on GitHub"
         },
         lastUpdated: {
@@ -200,13 +176,11 @@ export default defineConfig({
         },
         nav: [
           { text: 'Home', link: '/en/' },
-          { text: 'Features', link: '/en/features/index'},
+          { text: 'Features', link: '/en/features/' },
           { text: 'Manual', link: '/en/manual/deployment/' },
           { text: 'Development', link: '/en/develop/' },
-          { text: 'QQ Group', link: '/en/manual/other/group'},
-          { text: 'Feedback', link:'https://docs.qq.com/form/page/DWGxycXdKWG9PS1NH'},
           {
-            text: 'GitHub', 
+            text: 'GitHub',
             items: [
               { text: 'MaiBot', link: 'https://github.com/MaiM-with-u/MaiBot' },
               { text: 'MaiBot Docs', link: 'https://github.com/MaiM-with-u/docs' },
@@ -216,142 +190,118 @@ export default defineConfig({
         sidebar: {
           '/en/manual/': [
             {
-              text: 'Installation',
+              text: 'Quick Start',
               collapsed: false,
               items: [
-                { text: 'Installation Methods', link: '/en/manual/deployment/' },
+                { text: 'Get Started in 5 Minutes', link: '/en/manual/getting-started/' },
+              ]
+            },
+            {
+              text: 'Deployment & Installation',
+              collapsed: false,
+              items: [
+                { text: 'Deployment Overview', link: '/en/manual/deployment/' },
                 { text: 'Installation Guide', link: '/en/manual/deployment/installation' },
-                { text: 'Docker Deployment', link: '/en/manual/deployment/mmc_deploy_docker' },
-                { text: 'Other Deployment Methods', 
-                  collapsed: true, 
-                  items: [
-                    { text: 'Android Deployment', link: '/en/manual/deployment/community/mmc_deploy_android' },
-                    { text: 'Kubernetes Deployment', link: '/en/manual/deployment/community/mmc_deploy_kubernetes' },
-                    { text: '1Panel Deployment (Community)', link: '/en/manual/deployment/community/1panel' },
-                    { text: 'Linux One-Key Deployment (Community)', link: '/en/manual/deployment/community/linux_one_key' },
-                  ],
-                },
+                { text: 'Docker Deployment', link: '/en/manual/deployment/docker' },
+                { text: 'NapCat Adapter', link: '/en/manual/deployment/napcat' },
               ]
             },
             {
               text: 'Configuration',
               collapsed: false,
               items: [
-                { text: 'Quick Start', link: '/en/manual/configuration/' },
-                { text: 'Configuration Guide', link: '/en/manual/configuration/configuration_standard' },
-                { text: 'Model Configuration', link: '/en/manual/configuration/configuration_model_standard' },
-                { text: 'WebUI Configuration Guide', link: '/en/manual/configuration/config_windows_onekey_withwebui'},
-                { text: 'About LPMM', 
-                  collapsed: true, 
-                  items: [
-                    { text: 'Usage Guide', link: '/en/manual/configuration/lpmm/lpmm' },
-                    { text: 'Manual Compilation', link: '/en/manual/configuration/lpmm/lpmm_compile_and_install'},
-                    { text: 'Import File Format', link: '/en/manual/configuration/lpmm/lpmm_knowledge_template' },
-                  ]
-                },
-                { text: 'Backup', link: '/en/manual/configuration/backup' },
+                { text: 'Configuration Overview', link: '/en/manual/configuration/' },
+                { text: 'Bot Config', link: '/en/manual/configuration/bot-config' },
+                { text: 'Personality Config', link: '/en/manual/configuration/personality-config' },
+                { text: 'Chat Config', link: '/en/manual/configuration/chat-config' },
+                { text: 'Memory Config', link: '/en/manual/configuration/memory-config' },
+                { text: 'Model Config', link: '/en/manual/configuration/model-config' },
+              ]
+            },
+            {
+              text: 'Features',
+              collapsed: false,
+              items: [
+                { text: 'Features Overview', link: '/en/manual/features/' },
+                { text: 'How Messages are Processed', link: '/en/manual/features/message-pipeline' },
+                { text: 'How MaiBot Thinks', link: '/en/manual/features/maisaka-reasoning' },
+                { text: 'MaiBot\'s Memory', link: '/en/manual/features/memory-system' },
+                { text: 'Learning to Speak', link: '/en/manual/features/learning' },
+                { text: 'Emoji System', link: '/en/manual/features/emoji-system' },
+                { text: 'MCP Tools', link: '/en/manual/features/mcp' },
+              ]
+            },
+            {
+              text: 'WebUI Management',
+              collapsed: false,
+              items: [
+                { text: 'WebUI Overview', link: '/en/manual/webui/' },
+                { text: 'Config Management', link: '/en/manual/webui/config-management' },
+                { text: 'Memory Management', link: '/en/manual/webui/memory-management' },
+                { text: 'Plugin Management', link: '/en/manual/webui/plugin-management' },
+                { text: 'Chat & Stats', link: '/en/manual/webui/chat-stats' },
               ]
             },
             {
               text: 'Adapters',
               collapsed: false,
               items: [
-                { text: 'Adapters Documentation', link: '/en/manual/adapters' },
-                { text: 'MaiBot Napcat Adapter', link: '/en/manual/adapters/napcat' },
-                { text: 'GO-CQ Adapter', link: '/en/manual/adapters/gocq' },
-                {
-                  text: 'MaiBot TTS Adapter', 
-                  collapsed: true, 
-                  items: [
-                    { text: 'Introduction', link: '/en/manual/adapters/tts/' },
-                    { text: 'GPT_Sovits TTS', link: '/en/manual/adapters/tts/gpt_sovits' },
-                    { text: 'Doubao TTS', link: '/en/manual/adapters/tts/doubao_tts' },
-                    { text: 'Qwen Omni TTS', link: '/en/manual/adapters/tts/qwen_omni' },
-                  ]
-                },
+                { text: 'Adapters Overview', link: '/en/manual/adapters/' },
+                { text: 'QQ Connection', link: '/en/manual/adapters/napcat' },
+                { text: 'Voice Synthesis', link: '/en/manual/adapters/tts' },
               ]
             },
             {
               text: 'FAQ',
               collapsed: false,
               items: [
-                { text: 'FAQ Overview', link: '/en/manual/faq/' },
-                { text: 'Windows FAQ', link: '/en/manual/faq/windows' },
-                { text: 'Linux FAQ', link: '/en/manual/faq/linux' },
-                { text: 'macOS FAQ', link: '/en/manual/faq/macos' },
+                { text: 'FAQ', link: '/en/manual/faq/' },
               ]
             },
-            {
-              text: 'Resources',
-              collapsed: false,
-              items: [
-                { text: 'How to Ask Questions Effectively', link: '/en/manual/other/smart-question-guide' },
-                { text: 'Official QQ Group', link: '/en/manual/other/group' },
-                { text: 'End User License Agreement', link: '/en/manual/other/EULA' },
-              ]
-            },
-            { text: 'Changelog', link: '/en/manual/other/changelog' },
           ],
           '/en/develop/': [
             {
-              text: 'Development Docs',
+              text: 'Architecture',
+              collapsed: false,
               items: [
-                { text: 'Introduction', link: '/en/develop/' },
-                { text: 'Developer & Code Standards', link: '/en/develop/develop_standard' },
+                { text: 'Message Pipeline', link: '/en/develop/architecture/message-pipeline' },
+                { text: 'Maisaka Reasoning Engine', link: '/en/develop/architecture/maisaka-reasoning' },
+                { text: 'Memory System', link: '/en/develop/architecture/memory-system' },
+                { text: 'WebUI Internals', link: '/en/develop/architecture/webui-internals' },
               ]
             },
             {
-              text: 'Adapter Development',
+              text: 'Development',
               collapsed: false,
               items: [
-                { text: 'Development Overview', link: '/en/develop/adapter_develop/' },
-                { text: 'Adapter Development Guide', link: '/en/develop/adapter_develop/develop_adapter' },
+                { text: 'Architecture Overview', link: '/en/develop/' },
+                { text: 'Architecture Design', link: '/en/develop/architecture' },
+                { text: 'Contributing Guide', link: '/en/develop/contributing' },
               ]
             },
             {
               text: 'Plugin Development',
               collapsed: false,
               items: [
-                { text: 'Development Guide', link: '/en/develop/plugin_develop/' },
-                { text: 'Quick Start', link: '/en/develop/plugin_develop/quick-start'},
-                { text: 'Manifest System Guide', link: '/en/develop/plugin_develop/manifest-guide' },
-                { text: 'Actions System', link: '/en/develop/plugin_develop/action-components' },
-                { text: 'Command System', link: '/en/develop/plugin_develop/command-components' },
-                { text: 'Tool System', link: '/en/develop/plugin_develop/tool-components' },
-                { text: 'Configuration Management', link: '/en/develop/plugin_develop/configuration-guide' },
-                { text: 'Dependency Management', link: '/en/develop/plugin_develop/dependency-management' },
-                { text: 'WebUI Integration', link: '/en/develop/plugin_develop/plugin-config-schema' },
-                { text: 'API Reference',
-                  collapsed: true,
-                  items: [
-                    { text: 'Send API', link: '/en/develop/plugin_develop/api/send-api' },
-                    { text: 'Message API', link: '/en/develop/plugin_develop/api/message-api' },
-                    { text: 'Chat API', link: '/en/develop/plugin_develop/api/chat-api' },
-                    { text: 'LLM API', link: '/en/develop/plugin_develop/api/llm-api' },
-                    { text: 'Generator API', link: '/en/develop/plugin_develop/api/generator-api' },
-                    { text: 'Emoji API', link: '/en/develop/plugin_develop/api/emoji-api' },
-                    { text: 'Person API', link: '/en/develop/plugin_develop/api/person-api' },
-                    { text: 'Database API', link: '/en/develop/plugin_develop/api/database-api' },
-                    { text: 'Config API', link: '/en/develop/plugin_develop/api/config-api' },
-                    { text: 'Plugin API', link: '/en/develop/plugin_develop/api/plugin-manage-api' },
-                    { text: 'Component API', link: '/en/develop/plugin_develop/api/component-manage-api' },
-                    { text: 'Logging API', link: '/en/develop/plugin_develop/api/logging-api' },
-                    { text: 'Tool API', link: '/en/develop/plugin_develop/api/tool-api'}
-                  ]
-                },
+                { text: 'Development Guide', link: '/en/develop/plugin-dev/' },
+                { text: 'Manifest', link: '/en/develop/plugin-dev/manifest' },
+                { text: 'Hooks', link: '/en/develop/plugin-dev/hooks' },
+                { text: 'Actions', link: '/en/develop/plugin-dev/actions' },
+                { text: 'Commands', link: '/en/develop/plugin-dev/commands' },
+                { text: 'Tools', link: '/en/develop/plugin-dev/tools' },
+                { text: 'Configuration', link: '/en/develop/plugin-dev/config' },
+                { text: 'API Reference', link: '/en/develop/plugin-dev/api-reference' },
               ]
             },
             {
-              text: 'Maim_Message Reference',
+              text: 'Adapter Development',
               collapsed: false,
               items: [
-                { text: 'Maim_Message Overview', link: '/en/develop/maim_message/' },
-                { text: 'Message_Base', link: '/en/develop/maim_message/message_base' },
-                { text: 'Router', link: '/en/develop/maim_message/router' },
-                { text: 'Command Arguments', link: '/en/develop/maim_message/command_args'}
+                { text: 'Development Guide', link: '/en/develop/adapter-dev/' },
+                { text: 'PlatformIO Driver', link: '/en/develop/adapter-dev/platform-io' },
               ]
-            }
-          ]
+            },
+          ],
         },
       }
     }
@@ -363,7 +313,7 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
-    outline: [1, 4],
+    outline: [2, 4],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/MaiM-with-u/MaiBot' },
       { icon: 'x', link: 'https://x.com/MaiWithYou' },

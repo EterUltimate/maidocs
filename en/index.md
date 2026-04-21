@@ -1,48 +1,43 @@
----
+﻿---
 layout: home
-title: MaiBot Documentation Center
+
 hero:
   name: MaiBot
-  text: Multi-model, Human-like, Extensible Intelligent Agent
-  tagline: Multiple model collaboration, biomimetic thinking architecture, modular design and internal extensibility bring human-like interaction experience
+  text: LLM-based Interactive Agent
+  tagline: Not just a bot, but a digital life form active in conversations
   image:
     src: /images/mai.png
     alt: MaiBot
   actions:
     - theme: brand
-      text: Features
-      link: /features
-    - theme: brand
-      text: User Guide
-      link: /manual/
+      text: Get Started
+      link: /en/manual/deployment/
     - theme: alt
-      text: Development Docs
-      link: /develop/
+      text: Features
+      link: /en/features/
+    - theme: alt
+      text: Development
+      link: /en/develop/
+
 features:
-  - icon: 🧠
-    title: Multiple LLMs
-    details: Based on multiple LLMs working together, providing natural language understanding and generation capabilities
-  - icon: 💾
-    title: Memory Capabilities
-    details: Can remember events from conversations and how humans speak
-  - icon: ❤️
-    title: Biomimetic Thinking
-    details: Modular design referencing cognitive science theories, with extensibility
-  - icon: 🔧
-    title: Flexible Configuration
-    details: Supports multiple API services, easy to achieve personalized settings
-  - icon: 🚢
-    title: Multiple Deployment Options
-    details: Supports launcher, Docker, Linux, Windows, and various deployment methods
-  - icon: 🔄
-    title: Continuous Updates
-    details: Regular updates and improvements, continuously enhancing functionality and performance
+  - title: Natural Conversation
+    details: No more GPT-style walls of text - casual, varied, and human-like dialogue
+  - title: Smart Timing
+    details: Knows when to speak, reads the room, joins when appropriate, stays quiet when needed
+  - title: Continuous Learning
+    details: Imitates speech styles, learns new slang and in-group language, keeps evolving
+  - title: Deep Understanding
+    details: Inspired by personality theory, builds an understanding of your preferences and habits
+  - title: Plugin System
+    details: Powerful APIs and event system with virtually unlimited room for extension
+  - title: Long-term Memory
+    details: A-Memorix memory engine lets AI remember every interaction you've had
 ---
 
 ## Get More Support
 
-- Visit [GitHub Repository](https://github.com/MaiM-with-u/MaiBot) to submit issues or contribute code
-- Join user discussion groups for help
+- Visit the [GitHub repository](https://github.com/MaiM-with-u/MaiBot) to report issues or contribute
+- Join our user group for help
 
 <style scoped>
 #star-canvas {
@@ -66,7 +61,7 @@ features:
 <script setup>
 import { onMounted, onUnmounted, nextTick } from 'vue'
 
-// Normal cover image list
+// 普通封面图片列表
 const normalImages = [
   '/title_img/mai.png',
   '/title_img/mai2.png',
@@ -75,7 +70,7 @@ const normalImages = [
   '/title_img/emoji3.png',
 ]
 
-// Hidden image (appears with 1/10 probability of other images)
+// 隐藏款图片（出现概率是其他图片的1/5）
 const hiddenImage = '/title_img/dis.png'
 
 let animationFrameId = null
@@ -84,17 +79,17 @@ let particles = []
 onMounted(async () => {
   await nextTick()
   
-  // Weighted random selection: dis.png probability is 1/5 of other images
-  // Create a weighted array: other images appear 5 times each, hidden image appears 1 time
+  // 加权随机选择：dis.png 概率为其他图片的 1/5
+  // 创建一个加权数组：其他图片各出现5次，隐藏款出现1次
   const weightedImages = [
-    ...normalImages.map(img => Array(5).fill(img)).flat(), // Each normal image appears 5 times
-    hiddenImage // Hidden image appears 1 time
+    ...normalImages.map(img => Array(5).fill(img)).flat(), // 每张普通图片出现5次
+    hiddenImage // 隐藏款出现1次
   ]
   
-  // Randomly select an image
+  // 随机选择一张图片
   const randomImage = weightedImages[Math.floor(Math.random() * weightedImages.length)]
   
-  // Try multiple selectors to find hero image
+  // 尝试多种选择器来查找 hero 图片
   const selectors = [
     '.VPHomeHero .VPImage img',
     '.VPHomeHero img',
@@ -108,26 +103,26 @@ onMounted(async () => {
     if (heroImage) break
   }
   
-  // Function to set image
+  // 设置图片的函数
   const setImage = (imgElement, imageSrc) => {
     imgElement.src = imageSrc
     imgElement.alt = 'MaiBot'
-    // If it's emoji4.png, scale to 1.5x
+    // 如果是 emoji4.png，缩放到 1.5 倍
     if (imageSrc.includes('emoji4.png')) {
       imgElement.style.transform = 'scale(1.5)'
       imgElement.style.transformOrigin = 'center'
     } else {
-      // Reset scaling for other images
+      // 重置其他图片的缩放
       imgElement.style.transform = ''
       imgElement.style.transformOrigin = ''
     }
   }
   
-  // If image element is found, replace it
+  // 如果找到了图片元素，替换它
   if (heroImage) {
     setImage(heroImage, randomImage)
   } else {
-    // If not found, try again after delay (waiting for VitePress rendering)
+    // 如果没找到，延迟再试一次（等待 VitePress 渲染完成）
     setTimeout(() => {
       for (const selector of selectors) {
         heroImage = document.querySelector(selector)
@@ -139,7 +134,7 @@ onMounted(async () => {
     }, 100)
   }
   
-  // Initialize star effect
+  // 初始化星星特效
   initStarEffect()
 })
 
@@ -320,7 +315,7 @@ function initStarEffect() {
     
     frame++
     
-    // Get icon position
+    // 获取图标位置
     const heroImage = document.querySelector('.VPHomeHero .VPImage img') || 
                      document.querySelector('.VPHomeHero img')
     
