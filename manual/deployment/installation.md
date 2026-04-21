@@ -1,187 +1,120 @@
-# 📦 安装指南
-
-本指南将指导您部署麦麦聊天机器人。推荐使用 [uv](https://docs.astral.sh/uv/) 作为 Python 包管理器，它提供了更快的包安装速度和更好的依赖管理体验。传统 pip 方式同样可用。
-
-## 安装与运行
-
-### 前置准备
-- [Python](https://www.python.org/) - 3.10 及以上版本
-- [Git](https://git-scm.com/) - (可选)更方便的更新 MaiBot
-- [uv](https://docs.astral.sh/uv/) - (可选)Python 包管理器
-- **内存和磁盘空间**：- 请至少预留 2GB 内存和 2GB 的磁盘空间
-
-### 下载
-
-您可以通过以下两种方式获取 MaiBot：
-
-**方式一：从 Releases 下载（推荐新手）**
-
-访问 [GitHub Releases](https://github.com/MaiM-with-u/MaiBot/releases) 页面，下载最新版本的源码压缩包，解压后即可使用。
-
-**方式二：使用 Git 克隆**
-
-```bash
-git clone https://github.com/MaiM-with-u/MaiBot.git
-```
-
-::: tip 国内镜像加速
-如果克隆速度较慢，可使用镜像站加速：
-```bash
-git clone https://gh-proxy.com/https://github.com/MaiM-with-u/MaiBot.git
-```
-:::
-
-### 创建虚拟环境
-
-:::tabs key:platform-venv
-== Windows
-
-```bash
-# uv
-uv venv
-# pip 
-python -m venv venv
-```
-
-== Linux
-
-```bash
-# uv
-uv venv
-# pip 
-python3 -m venv venv
-```
-
-== macOS
-
-```bash
-# uv
-uv venv
-# pip 
-python3 -m venv venv
-```
-:::
-
-### 激活虚拟环境
-
-:::tabs key:platform-activate
-== Windows
-
-```bash
-.\venv\Scripts\activate
-```
-
-== Linux
-
-```bash
-source ./venv/bin/activate
-```
-
-== macOS
-
-```bash
-source ./venv/bin/activate
-```
-:::
-
-::: tip
-使用 **uv** 方式时无需手动激活虚拟环境，`uv run` 命令会自动处理。
-:::
-
-### 安装依赖
-
-:::tabs key:platform-deps
-== Windows
-
-```bash
-# uv
-uv pip install -r requirements.txt
-# pip 
-pip install -r requirements.txt
-```
-
-== Linux
-
-```bash
-# uv
-uv pip install -r requirements.txt
-# pip 
-pip install -r requirements.txt
-```
-
-== macOS
-
-```bash
-# uv
-uv pip install -r requirements.txt
-# pip 
-pip install -r requirements.txt
-```
-
-> `quick-algo` 包在 macOS 上可能需要手动编译，详见 [LPMM 知识库](/manual/configuration/lpmm/lpmm)。
-:::
-
-### 运行
-
-:::tabs key:platform-run
-== Windows
-
-```bash
-# uv
-uv run python bot.py
-# pip 
-python bot.py
-```
-
-== Linux
-
-```bash
-# uv
-uv run python3 bot.py
-# pip 
-python3 bot.py
-```
-
-== macOS
-
-```bash
-# uv
-uv run python bot.py
-# pip 
-python bot.py
-```
-:::
-
-## 配置
-
-麦麦支持通过 WebUI 进行配置：
-
-1. 启动程序后，在浏览器打开 `http://localhost:8001`（默认端口）
-2. 通过 WebUI 完成 bot 配置、模型配置和适配器配置，具体教程可见[WebUI配置指南](/manual/configuration/config_windows_onekey_withwebui)。
-3. 接入 QQ 请前往 [Adapters 文档中心](/manual/adapters/)。
-
-::: tip
-手动配置请参考 [配置指南](/manual/configuration/index)
-:::
-
-## 后台运行（Linux）
-
-```bash
-# 安装 screen（如未安装）
-sudo apt install screen
-
-# 启动
-screen -S maibot
-uv run python bot.py
-# 按 Ctrl+a，再按 d 退出 screen，程序在后台运行
-```
-
-## 常见问题
-
-- [Windows 常见问题](/manual/faq/windows)
-- [Linux 常见问题](/manual/faq/linux)
-- [macOS 常见问题](/manual/faq/macos)
-
+---
+title: 安装指南
 ---
 
-遇到问题？请参考常见问题解答或加入 [麦麦社群](/manual/other/group) 获取帮助。
+# 📦 MaiBot 安装指南
+
+本文将手把手教你安装和启动 MaiBot，就像拼装一个智能玩具！
+
+## 📥 下载 MaiBot
+
+从 [GitHub Release](https://github.com/MaiM-with-u/MaiBot/releases/) 下载最新版本，或者直接克隆仓库：
+
+::: code-group
+
+```bash [稳定版 (推荐)]
+git clone https://github.com/MaiM-with-u/MaiBot.git
+cd MaiBot
+```
+
+```bash [开发版 (尝鲜)]
+git clone -b dev https://github.com/MaiM-with-u/MaiBot.git
+cd MaiBot
+```
+
+:::
+
+::: warning ⚠️ 注意
+`dev` 分支有新功能但可能不稳定。第一次用建议选 `main` 分支。
+:::
+
+## 🔧 安装依赖
+
+MaiBot 用 [uv](https://github.com/astral-sh/uv) 管理依赖（就像 pip，但更快更好用）。
+
+### 安装 uv（就像给电脑装个新工具）
+
+::: code-group
+
+```bash [Windows]
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+```bash [macOS / Linux]
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+:::
+
+### 安装项目依赖（给机器人装零件）
+
+::: code-group
+
+```bash [推荐：uv]
+uv sync
+```
+
+```bash [备用：pip]
+pip install -r requirements.txt
+```
+
+:::
+
+`uv sync` 会自动装好所有需要的组件，包括数据库、Web界面等。
+
+## ⚙️ 配置机器人
+
+MaiBot 的配置文件在 `config/` 目录下，就像机器人的"大脑设置"：
+
+| 文件 | 作用 | 看这里 |
+|------|------|------|
+| `bot_config.toml` | 机器人基本信息 | [配置概览](../configuration/index.md) |
+| `model_config.toml` | AI模型设置 | [模型配置](../configuration/model-config.md) |
+
+第一次启动时，MaiBot 会自动生成默认配置。你需要改两个地方：
+
+1. **设置 QQ 账号**：在 `bot_config.toml` 中填写 `qq_account`（你的机器人 QQ 号）
+2. **设置 AI 模型**：在 `model_config.toml` 中填写 `api_key`（你的 AI 服务密钥）
+
+## 🚀 启动机器人
+
+```bash
+uv run python bot.py
+```
+
+## ✅ 用户协议确认
+
+第一次启动会要求你同意用户协议，很简单：
+
+**在终端输入"同意"就行！** 不需要记什么哈希值。
+
+## 🔍 常见问题（新手别怕）
+
+### Python 版本不对？
+
+MaiBot 需要 Python 3.10 以上。检查版本：
+
+```bash
+python --version
+```
+
+::: tip 💡 不确定选哪个版本？
+选最新的 Python 3.13 准没错！
+:::
+
+### 依赖装不上？
+
+```bash
+# 清除缓存重新装
+uv sync --reinstall
+```
+
+### 启动卡住了？
+
+- 检查配置文件填对了没
+- 看看是不是网络问题
+- 重启试试：Ctrl+C 停止，再运行一次
+
+### 想重启机器人？
+
+直接 Ctrl+C 停止，再运行 `uv run python bot.py` 就行。机器人会自动恢复状态。

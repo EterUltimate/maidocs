@@ -1,398 +1,46 @@
-# 📦 MaiBot 安装方式
+---
+title: 部署概览
+---
 
-<div class="manual-hero">
-  <div class="hero-content">
-    <h2 class="hero-title">安装部署</h2>
-    <p class="hero-subtitle">选择适合你的安装方式，快速部署 MaiBot</p>
-    <div class="hero-decoration"></div>
-  </div>
-</div>
+# 🚀 MaiBot 部署概览
 
-<div class="manual-nav-grid">
+**MaiBot 就是一个智能聊天机器人**，可以陪你聊天、讲笑话、回答问题。你只需要准备两样东西就能让它跑起来：
 
-<div class="nav-card">
+📱 **一个 QQ 小号**（用来登录机器人）
+🔑 **一个 AI 模型的 API 密钥**（就像一把钥匙，让机器人能思考说话）
 
-<div class="card-header">
-  <span class="card-icon">📦</span>
-  <div class="card-title-group">
-    <h3 class="card-title">一键包安装</h3>
-    <p class="card-desc">Windows 用户快速上手</p>
-  </div>
-</div>
+## 📦 部署方式选择
 
-<div class="card-links">
-  <a href="https://github.com/DrSmoothl/MaiBotOneKey" class="card-link card-link-main" target="_blank">
-    <span class="link-arrow">→</span>
-    <span>GitHub 下载</span>
-  </a>
-  <a href="/manual/other/group" class="card-link">
-    <span class="link-arrow">→</span>
-    <span>社群获取最新版本</span>
-  </a>
-</div>
+MaiBot 提供 3 种安装方式，任选其一即可：
 
-</div>
+| 方式 | 适合人群 | 难度 |
+|------|---------|------|
+| [源码安装](./installation.md) | 想自己折腾、控制细节的用户 | ⭐⭐ |
+| [Docker 部署](./docker.md) | 想一键部署、服务器用户 | ⭐ |
+| [NapCat 适配器](./napcat.md) | 需要连接 QQ 的用户 | ⭐⭐ |
 
-<div class="nav-card">
+::: tip 💡 新手推荐
+第一次用？建议按这个顺序：
 
-<div class="card-header">
-  <span class="card-icon">📝</span>
-  <div class="card-title-group">
-    <h3 class="card-title">安装指南</h3>
-    <p class="card-desc">适合所有主流操作系统</p>
-  </div>
-</div>
+1. **先安装 MaiBot** → [安装指南](./installation.md)
+2. **再连接 QQ** → [NapCat 适配器](./napcat.md)
+3. **最后配置 AI 模型** → [模型配置](../configuration/model-config.md)
+:::
 
-<div class="card-links">
-  <a href="installation" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>标准安装指南</span>
-  </a>
-</div>
+## ⚡ 3 分钟快速开始
 
-</div>
+如果你已经准备好了 Python 环境和 AI API，可以直接开干：
 
-<div class="nav-card">
+```bash
+# 1. 下载 MaiBot
+git clone https://github.com/MaiM-with-u/MaiBot.git
+cd MaiBot
 
-<div class="card-header">
-  <span class="card-icon">🐳</span>
-  <div class="card-title-group">
-    <h3 class="card-title">Docker 部署</h3>
-    <p class="card-desc">容器化快速部署方案</p>
-  </div>
-</div>
+# 2. 安装依赖（就像给机器人装零件）
+uv sync
 
-<div class="card-links">
-  <a href="mmc_deploy_docker" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>Docker 部署指南</span>
-  </a>
-</div>
+# 3. 启动！
+uv run python bot.py
+```
 
-</div>
-
-</div>
-
-## 社区部署方案
-
-<div class="manual-nav-grid">
-
-<div class="nav-card">
-
-<div class="card-header">
-  <span class="card-icon">📱</span>
-  <div class="card-title-group">
-    <h3 class="card-title">Android 部署</h3>
-    <p class="card-desc">通过 ZeroTermux 在移动端运行</p>
-  </div>
-</div>
-
-<div class="card-links">
-  <a href="community/mmc_deploy_android" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>Android 部署指南</span>
-  </a>
-</div>
-
-</div>
-
-<div class="nav-card">
-
-<div class="card-header">
-  <span class="card-icon">☸️</span>
-  <div class="card-title-group">
-    <h3 class="card-title">Kubernetes 部署</h3>
-    <p class="card-desc">使用 Helm Chart 在 K8s 集群部署</p>
-  </div>
-</div>
-
-<div class="card-links">
-  <a href="community/mmc_deploy_kubernetes" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>Kubernetes 部署指南</span>
-  </a>
-</div>
-
-</div>
-
-<div class="nav-card">
-
-<div class="card-header">
-  <span class="card-icon">🖥️</span>
-  <div class="card-title-group">
-    <h3 class="card-title">1Panel 部署</h3>
-    <p class="card-desc">通过 1Panel 面板快速部署</p>
-  </div>
-</div>
-
-<div class="card-links">
-  <a href="community/1panel" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>1Panel 部署指南</span>
-  </a>
-</div>
-
-</div>
-
-<div class="nav-card">
-
-<div class="card-header">
-  <span class="card-icon">🐧</span>
-  <div class="card-title-group">
-    <h3 class="card-title">Linux 一键脚本</h3>
-    <p class="card-desc">自动化脚本快速部署</p>
-  </div>
-</div>
-
-<div class="card-links">
-  <a href="community/linux_one_key" class="card-link card-link-main">
-    <span class="link-arrow">→</span>
-    <span>Linux 一键脚本部署指南</span>
-  </a>
-</div>
-
-</div>
-
-</div>
-
-## 获取帮助
-
-<div class="help-container">
-
-<div class="help-card">
-  <div class="help-icon">❓</div>
-  <h4>常见问题</h4>
-  <p>查阅 <a href="/manual/faq/">FAQ</a> 获取常见问题的解决方案</p>
-</div>
-
-<div class="help-card">
-  <div class="help-icon">💬</div>
-  <h4>加入社群</h4>
-  <p>加入<a href="/manual/other/group">麦麦社群</a>获取实时帮助</p>
-</div>
-
-<div class="help-card">
-  <div class="help-icon">🐛</div>
-  <h4>提交 Issue</h4>
-  <p>在 GitHub 上提交问题反馈</p>
-</div>
-
-</div>
-
-<style scoped>
-/* ===== Hero Section ===== */
-.manual-hero {
-  position: relative;
-  padding: 2.5rem 2rem;
-  margin-bottom: 2.5rem;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(50, 205, 50, 0.08) 100%);
-  border: 1px solid rgba(255, 140, 0, 0.15);
-  overflow: hidden;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-title {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  background: linear-gradient(120deg, #ff8c00 30%, #32cd32);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--vp-c-text-2);
-  max-width: 600px;
-  line-height: 1.6;
-}
-
-.hero-decoration {
-  position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* ===== Navigation Grid ===== */
-.manual-nav-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.nav-card {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.nav-card:hover {
-  border-color: rgba(255, 140, 0, 0.3);
-  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.12);
-  transform: translateY(-4px);
-}
-
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.card-icon {
-  font-size: 2rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.card-title-group {
-  flex: 1;
-}
-
-.card-title {
-  margin: 0 0 0.25rem 0;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-}
-
-.card-desc {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-3);
-}
-
-.card-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.card-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 0.875rem;
-  border-radius: 8px;
-  color: var(--vp-c-text-2);
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  background: rgba(255, 140, 0, 0.03);
-}
-
-.card-link:hover {
-  background: rgba(255, 140, 0, 0.1);
-  color: #ff8c00;
-  padding-left: 1.125rem;
-}
-
-.link-arrow {
-  color: #ff8c00;
-  font-size: 0.8rem;
-  transition: transform 0.2s ease;
-}
-
-.card-link:hover .link-arrow {
-  transform: translateX(3px);
-}
-
-.card-link-main {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08) 0%, rgba(50, 205, 50, 0.05) 100%);
-  font-weight: 500;
-  border-left: 3px solid #ff8c00;
-}
-
-.card-link-main:hover {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(50, 205, 50, 0.1) 100%);
-}
-
-/* ===== Help Section ===== */
-.help-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-.help-card {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.help-card:hover {
-  border-color: rgba(255, 140, 0, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(255, 140, 0, 0.1);
-}
-
-.help-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.help-card h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-}
-
-.help-card p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-3);
-  line-height: 1.5;
-}
-
-.help-card a {
-  color: #ff8c00;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.help-card a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Responsive Design ===== */
-@media (max-width: 640px) {
-  .manual-hero {
-    padding: 1.75rem 1.25rem;
-  }
-  
-  .hero-title {
-    font-size: 1.4rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.9rem;
-  }
-  
-  .manual-nav-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .help-container {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+第一次启动会要求你同意用户协议，输入"同意"就行。就这么简单！

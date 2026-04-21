@@ -1,157 +1,186 @@
-# MaiBot Napcat Adapter Documentation
+---
+title: 💬 QQ Bot Connection Guide
+---
 
-## Installation
-Installing this adapter is very simple. Just download the adapter files from the [GitHub repository](https://github.com/MaiM-with-u/MaiBot-Napcat-Adapter), install dependencies, and start it with the appropriate environment.
-```bash
-git clone https://github.com/MaiM-with-u/MaiBot-Napcat-Adapter.git
-pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple --upgrade
-python main.py
-```
+# 💬 QQ Bot Connection Guide
 
-## Configuration
-The Napcat adapter configuration template file is located at `template/config_template.toml`. You first **need to copy this file, rename it to config.toml, and place it in the root directory**, then modify it according to your needs.
+Want MaiBot to chat with you in QQ groups? NapCat makes it super easy!
 
-### Deployment Preparation
+## What is NapCat? 🤔
 
-#### Folder Structure
+NapCat is like a "translator" that helps MaiBot and QQ chat:
+- ✅ No need to install full QQ client
+- ✅ Stable, fast, and resource-efficient  
+- ✅ Supports group and private chats
+- ✅ Auto-connects, no hassle
 
-A typical deployment folder structure is as follows:
+Simply put: NapCat lets MaiBot "understand" QQ messages and "speak" back to QQ!
 
-```
-Maim-with-u
-├── MaiBot
-│   ├── changelogs
-│   ├── config
-│   ├── data
-│   ├── depends-data
-│   ├── src
-│   │   └── ...
-│   └── template
-└── MaiBot-Napcat-Adapter
-    ├── config.toml
-    └── template
-```
+## How It Works 🔄
 
-#### Initialize Configuration File
+As simple as making a phone call:
+1. **NapCat** logs into your QQ number (like you logging into QQ on phone)
+2. **MaiBot** starts and waits for connection (like answering a call)
+3. **NapCat** automatically finds MaiBot and connects (like dialing connects the call)
+4. **Message flow** QQ Message → NapCat → MaiBot → Reply → NapCat → QQ
 
-You can use the following commands to copy the configuration file:
+## Configure MaiBot 🛠️
 
-```bash
-# Linux/macOS
-cp template/config_template.toml config.toml
+### Step 1: Tell MaiBot You Want to Use QQ
 
-# Windows
-# Manually copy template/config_template.toml to the root directory and rename it to config.toml
-```
-
-### Napcat Settings
-
-1. **Install Napcat**: Please refer to the [Napcat official documentation](https://napneko.github.io/guide/boot/Shell) to install the Shell version or Framework version.
-
-2. **Configure Websocket Client**:
-   - Create a new `websocket client` in Napcat
-   - Set the reverse proxy URL (e.g., `ws://localhost:8095/`)
-   
-   > [!IMPORTANT]
-   > Configuration example:
-   > ![](/images/napcat_websockets_client.png)
-
-### Key Field Configuration
-
-Before editing `config.toml`, you need to understand the correspondence of the following key fields:
-
-- `[Napcat_Server]` `port` should match the port in the Napcat reverse proxy URL (default 8095)
-- `[MaiBot_Server]` `port` should match the `PORT` in MaiBot's `.env` file (default 8000)
-- `[Napcat_Server]` `heartbeat` should match the heartbeat interval in Napcat's reverse proxy settings
-  - **Note**: The interval in Napcat is in milliseconds, while in the configuration file it's in seconds (e.g., if Napcat is set to 30000 milliseconds, enter 30)
-
-**MaiBot .env file example**:
-```ini
-HOST=127.0.0.1
-PORT=8000
-```
-
-The specific configuration items are explained below:
+Add this to `config/bot_config.toml`:
 
 ```toml
-[Nickname] # Currently unused
-nickname = ""
-
-[Napcat_Server] # Napcat connection ws service settings
-host = "localhost" # Host address set in Napcat
-port = 8095        # Port set in Napcat
-heartbeat = 30     # Same as Napcat heartbeat setting (in seconds)
-
-[MaiBot_Server] # Connection to MaiBot ws service settings
-platform_name = "qq" # Name identifying the adapter (required)
-host = "localhost"   # Host address set in MaiBot's .env file, i.e., the HOST field
-port = 8000          # Port set in MaiBot's .env file, i.e., the PORT field
-
-[Chat] # Whitelist/blacklist functionality
-group_list_type = "whitelist" # Group list type, options: whitelist, blacklist
-group_list = [] # Group list
-# When group_list_type is whitelist, only groups in the group list can chat
-# When group_list_type is blacklist, any groups in the group list cannot chat
-private_list_type = "whitelist" # Private chat list type, options: whitelist, blacklist
-private_list = [] # Private chat list
-# When private_list_type is whitelist, only users in the private chat list can chat
-# When private_list_type is blacklist, any users in the private chat list cannot chat
-ban_user_id = [] # Global ban list (users in the global ban list cannot chat at all)
-ban_qq_bot = false # Whether to block QQ official bots
-enable_poke = true # Whether to enable poke functionality
-
-[Voice] # Voice sending settings
-use_tts = false # Whether to use TTS voice (make sure you have configured TTS and have the corresponding adapter)
-
-[Debug]
-level = "INFO" # Log level (DEBUG, INFO, WARNING, ERROR)
+[bot]
+platform = "qq"           # Use QQ platform
+qq_account = 123456789    # Your bot's QQ number
+nickname = "MaiMai"       # Bot nickname
 ```
 
-Let me explain each item in the configuration file in detail:
+That's it! 🎉
 
-### Napcat_Server
-- `host`: Host address set in Napcat, usually `localhost`.
-- `port`: Port set in Napcat, usually `8095`.
-- `heartbeat`: Same as Napcat heartbeat setting (in seconds), usually `30`.
+### Step 2: Set Connection Parameters
 
-The combination of `host` and `port` in this section forms the ws service address set in Napcat. I recommend using the default values.
+Still in `config/bot_config.toml`:
 
-### MaiBot_Server
-- `platform_name`: Name identifying the adapter, usually `qq`.
-- `host`: Host address set in MaiBot's `.env` file, i.e., the `HOST` field.
-- `port`: Port set in MaiBot's `.env` file, i.e., the `PORT` field.
+```toml
+[maim_message]
+ws_server_host = "127.0.0.1"   # Server address (use this for local)
+ws_server_port = 8080           # Port number (default 8080)
+auth_token = []                 # Auth token, leave empty
+```
 
-This `platform_name` is used to identify the adapter. Since the Napcat adapter is specifically designed for QQ, I recommend using `qq`, but you can also use other names.
+| Setting | What It Means | How to Fill |
+|--------|---------------|-------------|
+| `ws_server_host` | Server address | Use `127.0.0.1` locally, actual IP for servers |
+| `ws_server_port` | Port number | Default `8080`, remember if you change it |
+| `auth_token` | Password verification | Leave empty, don't worry about it |
 
-### Chat
-- `group_list_type`: Group list type, options: `whitelist`, `blacklist`.
-- `group_list`: Group list.
+## Configure NapCat 🐱
 
-When `group_list_type` is `whitelist`, only groups in the group list can chat. This means only groups explicitly listed in `group_list` will be allowed to interact with the bot, all other unlisted groups will be prohibited.
+### Install NapCat
 
-When `group_list_type` is `blacklist`, any groups in the group list cannot chat. This means groups listed in `group_list` will be prohibited from interacting with the bot, while unlisted groups can use the chat function normally.
+Two ways, pick either:
 
-- `private_list_type`: Private chat list type, options: `whitelist`, `blacklist`.
-- `private_list`: Private chat list.
+**Method 1: Docker (Recommended)**
+```yaml
+napcat:
+  environment:
+    - NAPCAT_UID=1000
+    - NAPCAT_GID=1000
+    - TZ=Asia/Shanghai
+  ports:
+    - "6099:6099"
+  volumes:
+    - ./docker-config/napcat:/app/napcat/config
+    - ./data/qq:/app/.config/QQ
+  container_name: maim-bot-napcat
+  restart: always
+  image: mlikiowa/napcat-docker:latest
+```
 
-This setting is similar to `group_list`, but for private chats.
+**Method 2: Local Installation**
+Download the appropriate version from [NapCatQQ Release](https://github.com/NapNeko/NapCatQQ/releases)
 
-- `ban_user_id`: Global ban list (users in the global ban list cannot chat at all).
+### Set Up Connection
 
-This setting is a global ban list. Any user in this list cannot chat with the bot at all, regardless of whether they try to interact with the bot in group chats.
+1. Open NapCat's web interface
+2. Find "Reverse WebSocket" settings
+3. Fill in MaiBot address: `ws://127.0.0.1:8080/ws`
 
-- `ban_qq_bot`: Whether to block QQ official bots.
-If you don't want QQ official bots to interact with MaiBot, set this option to `true`.
+Example config:
+```json
+{
+  "ws": {
+    "enable": false
+  },
+  "reverse-ws": {
+    "enable": true,
+    "urls": ["ws://127.0.0.1:8080/ws"]
+  }
+}
+```
 
-- `enable_poke`: Whether to enable poke functionality.
+### Login to QQ
 
-Literal meaning~
+After starting NapCat, you need to login:
 
-### Voice
-- `use_tts`: Whether to use TTS voice.
+1. **QR Code Login**: Look for QR code in logs, scan with phone QQ
+2. **Password Login**: Fill account password in config
 
-If you want to use TTS voice functionality, make sure you have configured TTS and have the corresponding adapter. Then set this option to `true`.
+⚠️ **Important Reminders**:
+- Recommend using secondary account to reduce ban risk
+- Login info is saved, no need to re-login after restart
+- Follow QQ rules, don't spam
 
-### Debug
-- `level`: Log level (`DEBUG`, `INFO`, `WARNING`, `ERROR`).
-- `level`: Log level, I recommend using `INFO` to avoid excessive log information interference.
+## Connection Steps 📋
+
+### Recommended Startup Order:
+
+1. **Start NapCat** → Wait for QQ login success
+2. **Start MaiBot** → Wait for WebSocket service startup  
+3. **Auto-connect** → NapCat automatically connects to MaiBot
+
+```bash
+# Docker one-click startup (recommended)
+docker compose up -d
+
+# Manual startup
+# Terminal 1: Start NapCat
+# Terminal 2: uv run python bot.py
+```
+
+### Verify Connection ✅
+
+How to know it's connected? Check these:
+
+1. **MaiBot logs**: See "WebSocket service started successfully"
+2. **NapCat logs**: See "Reverse WebSocket connection successful"
+3. **Test message**: @bot in QQ group, see if it replies
+
+## Common Issues 🤔
+
+### Can't Connect?
+
+**Check these**:
+- Are address and port correct?
+- Is firewall blocking?
+- Are NapCat and MaiBot on same machine?
+- Any error messages in logs?
+
+### Not Receiving Messages?
+
+**Possible causes**:
+- Wrong QQ number? Must match NapCat login
+- Is NapCat itself receiving messages? Check NapCat logs
+- Network connection OK?
+
+### Can't Send Messages?
+
+**Troubleshooting**:
+- Does bot have speaking permissions? (Need permissions in groups)
+- Any errors in MaiBot logs?
+- Multiple programs using same QQ number?
+
+### Other Issues
+
+- **Version compatibility**: Latest NapCat usually works fine
+- **Network issues**: Check firewall and network settings
+- **Permission issues**: Ensure bot has necessary permissions
+
+## Security Reminders 🔒
+
+- Don't expose WebSocket port to public internet
+- Using `127.0.0.1` is safer
+- Regularly update NapCat version
+- Pay attention to QQ usage rules
+
+## Getting Help 💬
+
+If you encounter problems:
+- Check NapCat and MaiBot logs
+- Join MaiBot community groups to ask
+- Submit issues on GitHub
+- Search for related tutorials
+
+Good luck with your connection, let MaiBot chat with you in QQ! 🎉
