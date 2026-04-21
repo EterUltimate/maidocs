@@ -63,6 +63,15 @@ auth_token = []                 # Auth token, leave empty
 Two ways, pick either:
 
 **Method 1: Docker (Recommended)**
+
+If you use the project's built-in `docker-compose.yml`, NapCat is already included as the `napcat` service and can be started together with MaiBot:
+
+```bash
+docker compose up -d
+```
+
+The service configuration looks like this:
+
 ```yaml
 napcat:
   environment:
@@ -79,6 +88,13 @@ napcat:
   image: mlikiowa/napcat-docker:latest
 ```
 
+After startup, the NapCat WebUI is exposed on port `6099` by default:
+
+- Local access: `http://localhost:6099`
+- Config directory: `./docker-config/napcat/`
+- QQ login data: `./data/qq/`
+- View logs: `docker compose logs -f napcat`
+
 **Method 2: Local Installation**
 Download the appropriate version from [NapCatQQ Release](https://github.com/NapNeko/NapCatQQ/releases)
 
@@ -87,6 +103,8 @@ Download the appropriate version from [NapCatQQ Release](https://github.com/NapN
 1. Open NapCat's web interface
 2. Find "Reverse WebSocket" settings
 3. Fill in MaiBot address: `ws://127.0.0.1:8080/ws`
+
+If NapCat and MaiBot both run in Docker Compose, make sure MaiBot's `maim_message.ws_server_host` listens on an address reachable from the container network. If unsure, prefer the project's built-in Docker configuration.
 
 Example config:
 ```json
@@ -167,6 +185,15 @@ How to know it's connected? Check these:
 - **Version compatibility**: Latest NapCat usually works fine
 - **Network issues**: Check firewall and network settings
 - **Permission issues**: Ensure bot has necessary permissions
+
+### How to Update NapCat?
+
+For Docker deployment, update with:
+
+```bash
+docker compose pull napcat
+docker compose up -d napcat
+```
 
 ## Security Reminders 🔒
 

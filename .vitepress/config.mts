@@ -54,7 +54,7 @@ export default defineConfig({
                 { text: '部署概览', link: '/manual/deployment/' },
                 { text: '安装指南', link: '/manual/deployment/installation' },
                 { text: 'Docker 部署', link: '/manual/deployment/docker' },
-                { text: 'NapCat 适配器', link: '/manual/deployment/napcat' },
+                { text: 'NapCat 适配器', link: '/manual/adapters/napcat' },
               ]
             },
             {
@@ -203,7 +203,7 @@ export default defineConfig({
                 { text: 'Deployment Overview', link: '/en/manual/deployment/' },
                 { text: 'Installation Guide', link: '/en/manual/deployment/installation' },
                 { text: 'Docker Deployment', link: '/en/manual/deployment/docker' },
-                { text: 'NapCat Adapter', link: '/en/manual/deployment/napcat' },
+                { text: 'NapCat Adapter', link: '/en/manual/adapters/napcat' },
               ]
             },
             {

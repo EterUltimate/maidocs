@@ -11,19 +11,18 @@ title: Deployment Overview
 
 ## 📦 Choose Your Deployment Method
 
-MaiBot offers 3 installation methods, choose any one:
+MaiBot offers 2 installation methods, choose any one:
 
 | Method | Suitable For | Difficulty |
 |------|---------|------|
 | [Source Installation](./installation.md) | Users who want to tinker and control details | ⭐⭐ |
 | [Docker Deployment](./docker.md) | One-click deployment, server users | ⭐ |
-| [NapCat Adapter](./napcat.md) | Users who need to connect to QQ | ⭐⭐ |
 
 ::: tip 💡 Beginner Recommendation
 First time using? Follow this order:
 
 1. **Install MaiBot first** → [Installation Guide](./installation.md)
-2. **Then connect to QQ** → [NapCat Adapter](./napcat.md)
+2. **Then connect to QQ** → [NapCat Adapter](../adapters/napcat.md)
 3. **Finally configure AI model** → [Model Configuration](../configuration/model-config.md)
 :::
 

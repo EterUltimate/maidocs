@@ -14,7 +14,7 @@ title: 用户手册
 
 1. [部署概览](/manual/deployment/) - 了解部署方式和前提条件
 2. [安装指南](/manual/deployment/installation) - 下载并安装 MaiBot
-3. [NapCat 适配器](/manual/deployment/napcat) - 连接 QQ
+3. [NapCat 适配器](/manual/adapters/napcat) - 连接 QQ
 4. [配置概览](/manual/configuration/) - 了解配置文件结构
 
 ### ⚙️ 配置详解

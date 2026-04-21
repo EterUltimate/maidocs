@@ -14,7 +14,7 @@ If you're using MaiBot for the first time, we recommend reading in this order:
 
 1. [Deployment Overview](/en/manual/deployment/) - Understand deployment methods and prerequisites
 2. [Installation Guide](/en/manual/deployment/installation) - Download and install MaiBot
-3. [NapCat Adapter](/en/manual/deployment/napcat) - Connect to QQ
+3. [NapCat Adapter](/en/manual/adapters/napcat) - Connect to QQ
 4. [Configuration Overview](/en/manual/configuration/) - Learn about configuration file structure
 
 ### ⚙️ Configuration Details

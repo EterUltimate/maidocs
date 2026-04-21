@@ -63,6 +63,15 @@ auth_token = []                 # 认证令牌，空着就行
 两种方式，任选其一：
 
 **方式一：Docker（推荐）**
+
+如果你使用项目自带的 `docker-compose.yml`，NapCat 已经作为 `napcat` 服务包含在内，直接和 MaiBot 一起启动即可：
+
+```bash
+docker compose up -d
+```
+
+对应服务配置如下：
+
 ```yaml
 napcat:
   environment:
@@ -79,6 +88,13 @@ napcat:
   image: mlikiowa/napcat-docker:latest
 ```
 
+启动后，NapCat WebUI 默认暴露在 `6099` 端口：
+
+- 本机访问：`http://localhost:6099`
+- 配置目录：`./docker-config/napcat/`
+- QQ 登录数据：`./data/qq/`
+- 查看日志：`docker compose logs -f napcat`
+
 **方式二：本地安装**
 从 [NapCatQQ Release](https://github.com/NapNeko/NapCatQQ/releases) 下载对应版本
 
@@ -87,6 +103,8 @@ napcat:
 1. 打开 NapCat 的网页界面
 2. 找到 "反向 WebSocket" 设置
 3. 填上 MaiBot 地址：`ws://127.0.0.1:8080/ws`
+
+如果 NapCat 和 MaiBot 都在 Docker Compose 里运行，请确认 MaiBot 的 `maim_message.ws_server_host` 监听地址允许容器网络访问；不确定时优先使用项目自带的 Docker 配置。
 
 配置示例：
 ```json
@@ -167,6 +185,15 @@ docker compose up -d
 - **版本兼容性**：用最新版 NapCat 一般没问题
 - **网络问题**：检查防火墙和网络设置
 - **权限问题**：确保机器人有必要的权限
+
+### 怎么更新 NapCat？
+
+Docker 部署可以这样更新：
+
+```bash
+docker compose pull napcat
+docker compose up -d napcat
+```
 
 ## 安全提醒 🔒
 
