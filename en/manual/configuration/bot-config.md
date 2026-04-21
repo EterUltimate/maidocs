@@ -1,114 +1,68 @@
 ---
-title: Basic Configuration
+title: Bot Configuration
 ---
 
-# 🤖 Basic Configuration
+# Bot Configuration
 
-The `[bot]` section in `bot_config.toml` is the bot's "ID card". It tells MaiBot the most basic information.
+`bot_config.toml` is MaiBot's main configuration file. It contains bot identity, personality, chat behavior, memory, expression learning, message connection, WebUI, MCP, plugin runtime, and more.
 
-## 📋 Configuration Items Overview
+This document is organized according to `src/config/official_configs.py` and `src/config/config.py`. The configuration file is generated and upgraded by MaiBot automatically. Do not manually add fields that do not exist in the code.
 
-```toml
-[bot]
-platform = "qq"           # Platform identifier
-qq_account = 0            # QQ account
-platforms = []            # Other platform list
-nickname = "MaiMai"       # Bot nickname
-alias_names = []          # Alias list
-```
+## Configuration File Structure
 
-## 🔍 Detailed Explanation of Each Configuration Item
+`bot_config.toml` contains these top-level sections:
 
-### platform 🏷️ Platform Identifier
+| Section | Purpose |
+|------|------|
+| `[bot]` | Bot identity, platform, nickname, aliases |
+| `[personality]` | Character setting and reply style |
+| `[visual]` | Image understanding mode and visual prompt |
+| `[chat]` | Reply frequency, context, chat prompts |
+| `[message_receive]` | Image parsing threshold and message filtering |
+| `[memory]` | Memory retrieval, writeback, feedback correction |
+| `[expression]` | Expression learning, jargon learning, expression checking |
+| `[voice]` | Speech recognition |
+| `[emoji]` | Emoji collection, filtering, sending |
+| `[keyword_reaction]` | Keyword/regex triggered reactions |
+| `[response_post_process]` | Global response post-processing switch |
+| `[chinese_typo]` | Chinese typo generation |
+| `[response_splitter]` | Response splitting |
+| `[telemetry]` | Telemetry switch |
+| `[debug]` | Debug display and tracking |
+| `[maim_message]` | maim_message WebSocket/API Server |
+| `[webui]` | WebUI service and security settings |
+| `[database]` | Message binary data saving policy |
+| `[mcp]` | MCP client and server configuration |
+| `[plugin_runtime]` | Plugin runtime and browser rendering configuration |
 
-**What is this?** Tells MaiBot which chat platform you use her on.
-
-**How to fill?** Use `"qq"` for QQ. For other platforms, fill in the corresponding platform identifier.
-
-**Example:**
-```toml
-[bot]
-platform = "qq"  # I use MaiMai in QQ groups
-```
-
-### qq_account 🔢 QQ Account
-
-**What is this?** The bot's QQ number, just like a phone number.
-
-**How to fill?** Fill in the numeric ID of the QQ account that the bot logs in with.
-
-**Example:**
-```toml
-[bot]
-qq_account = 123456789  # MaiMai's QQ number is 123456789
-```
-
-::: tip 💡 Tip
-This number is important! MaiMai uses it to identify which messages are @mentions to her.
+::: tip
+The `[inner] version` at the top of the configuration file is managed by the program. Users usually do not need to edit this version manually.
 :::
 
-### platforms 📱 Other Platforms
+## Basic Information [bot]
 
-**What is this?** If MaiMai needs to run on multiple platforms at the same time, list the other platforms here.
-
-**How to fill?** Fill in a list of platform identifiers, such as `["qq", "telegram"]`.
-
-**Example:**
-```toml
-[bot]
-platforms = ["telegram", "discord"]  # Besides QQ, also use Telegram and Discord
-```
-
-::: warning ⚠️ Note
-Most users only need QQ, so this can be left empty.
-:::
-
-### nickname 🏷️ Bot Nickname
-
-**What is this?** What MaiMai is called and how people address her in groups.
-
-**How to fill?** Use whatever name you want. Chinese is supported.
-
-**Example:**
-```toml
-[bot]
-nickname = "XiaoMai"  # Everyone calls her "XiaoMai"
-```
-
-### alias_names 🏷️ Alias List
-
-**What is this?** MaiMai's other names, like having both a formal name and nicknames.
-
-**How to fill?** Fill in a list. You can set many names.
-
-**Example:**
-```toml
-[bot]
-alias_names = ["MaiMai", "XiaoMai", "MaiZi"]  # She responds to any of these names
-```
-
-::: tip 💡 Tip
-After aliases are configured, when someone mentions MaiMai by these names in a group, she will also reply, just like being @mentioned.
-:::
-
-## 🎯 Complete Configuration Example
+`[bot]` contains the bot's identity information. The most commonly used fields are `platform`, `qq_account`, `nickname`, and `alias_names`.
 
 ```toml
 [bot]
-platform = "qq"                    # Use in QQ groups
-qq_account = 123456789             # MaiMai's QQ number
-platforms = []                     # Only use QQ, leave other platforms empty
-nickname = "MaiMai"                # Main name is "MaiMai"
-alias_names = ["XiaoMai", "MaiZi"] # Nicknames are "XiaoMai" and "MaiZi"
+platform = "qq"
+qq_account = 123456789
+platforms = []
+nickname = "MaiMai"
+alias_names = ["XiaoMai", "MaiZi"]
 ```
 
----
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `platform` | `str` | `""` | Main platform identifier, such as `qq` |
+| `qq_account` | `int` | `0` | QQ account used by the bot, used to identify @mentions and self messages |
+| `platforms` | `list[str]` | `[]` | Other platform identifiers, used in multi-platform scenarios |
+| `nickname` | `str` | `"麦麦"` | Bot nickname |
+| `alias_names` | `list[str]` | `[]` | Bot aliases, used when detecting mentions |
 
-## 🎭 Personality and Visual Configuration
+## Personality [personality]
 
-The `[personality]` section and `[visual]` section in `bot_config.toml` are where you define MaiMai's character setting. It is like writing a background story for a virtual character.
-
-## 🎨 Personality Configuration [personality]
+`[personality]` controls MaiBot's character setting and language style.
 
 ```toml
 [personality]
@@ -118,77 +72,16 @@ multiple_reply_style = []
 multiple_probability = 0.3
 ```
 
-### personality 🎭 "Who am I?"
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `personality` | `str` | See default config | Character setting, recommended within 100 Chinese characters |
+| `reply_style` | `str` | See default config | Default expression style, recommended 1-2 lines |
+| `multiple_reply_style` | `list[str]` | `[]` | Optional style list; can randomly replace `reply_style` when not empty |
+| `multiple_probability` | `float` | `0.3` | Probability of using `multiple_reply_style`, range `0.0-1.0` |
 
-**What is this?** MaiMai's character setting, like a character background in a novel.
+## Visual [visual]
 
-**How to write?** Describe who she is and what kind of personality she has in simple words. Keep it within about 100 characters if possible. The more specific, the better.
-
-**Examples:**
-```toml
-[personality]
-personality = "A gentle and patient college girl who likes helping others and occasionally jokes"
-
-personality = "A sharp-tongued but kind-hearted college student who talks tough but is reliable when it matters"
-
-personality = "A lively high school girl who likes anime and games and speaks with lots of energy"
-```
-
-::: warning ⚠️ Note
-This character setting directly affects MaiMai's speaking style. If it is too vague or self-contradictory, her replies may feel strange.
-:::
-
-### reply_style 💬 "How do I speak?"
-
-**What is this?** Controls MaiMai's usual speaking style, like setting rules for her language habits.
-
-**How to write?** Describe how she should speak in one or two short lines.
-
-**Examples:**
-```toml
-[personality]
-reply_style = "Please use formal Chinese expression and avoid internet slang and emojis."
-
-reply_style = "Speak more casually, often use kaomoji and stickers, and keep a relaxed tone."
-
-reply_style = "Speak with a little anime flavor, occasionally use Japanese words, and keep the tone lively and cute."
-```
-
-### multiple_reply_style 🎲 "Occasionally change style?"
-
-**What is this?** Prepare several different speaking styles for MaiMai. She will randomly switch between them.
-
-**How to write?** Write a list of styles. Each style is a one-sentence description.
-
-**Example:**
-```toml
-[personality]
-reply_style = "Reply in the normal style"
-multiple_reply_style = [
-    "Reply in a coquettish tone",
-    "Reply in a tsundere tone", 
-    "Reply in a teasing tone",
-    "Reply in an artsy youth tone"
-]
-multiple_probability = 0.3  # 30% chance to change style
-```
-
-### multiple_probability 🎲 "Probability of changing style"
-
-**What is this?** Controls how often MaiMai switches speaking styles.
-
-**How to fill?** A decimal between 0 and 1. `0` means never switch, and `1` means switch every time.
-
-**Examples:**
-```toml
-[personality]
-multiple_probability = 0.2  # 20% chance to change style, occasionally
-multiple_probability = 0.8  # 80% chance to change style, very often
-```
-
-## 👁️ Visual Configuration [visual]
-
-Controls how MaiMai handles image messages and whether she can "talk about pictures".
+`[visual]` controls how image messages are handled by the planner and replyer.
 
 ```toml
 [visual]
@@ -197,73 +90,47 @@ replyer_mode = "auto"
 visual_style = "请用中文描述这张图片的内容。如果有文字，请把文字描述概括出来，请留意其主题，直观感受，输出为一段平文本，最多30字，请注意不要分点，就输出一段文本"
 ```
 
-### planner_mode 🧠 "How to plan after seeing an image?"
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `planner_mode` | `"text" \| "multimodal" \| "auto"` | `"auto"` | Planner visual mode. `auto` chooses based on model metadata |
+| `replyer_mode` | `"text" \| "multimodal" \| "auto"` | `"auto"` | Replyer visual mode. `auto` chooses based on model metadata |
+| `visual_style` | `str` | See default config | Visual prompt. Usually not recommended to modify |
 
-**What is this?** Controls how MaiMai decides whether to reply after seeing an image.
+## Chat [chat]
 
-**Options:**
-- `"auto"` - Automatic detection (recommended)
-- `"text"` - Treat as text-only processing, as if no image was seen
-- `"multimodal"` - Force image understanding (requires a vision-capable AI model)
-
-### replyer_mode 💬 "How to reply after seeing an image?"
-
-**What is this?** Controls how MaiMai generates reply content after seeing an image.
-
-**Options:**
-- `"auto"` - Automatic detection (recommended)
-- `"text"` - Treat as text-only reply, as if no image was seen
-- `"multimodal"` - Force image-based reply (requires a vision-capable AI model)
-
-::: tip 💡 Tip
-`"auto"` mode is the smartest. It automatically checks whether your configured AI model supports images, then decides how to process them.
-:::
-
-### visual_style 👁️ "How to talk about pictures?"
-
-**What is this?** Tells the AI how to describe image content, like giving the AI a pair of "glasses" and instructions.
-
-**The default is good enough.** Usually you do not need to change it. If changed poorly, MaiMai may not understand images well.
-
-## 🎯 Complete Configuration Example
-
-```toml
-[personality]
-personality = "A lively high school girl who likes anime and games, is curious about new things, and speaks with lots of energy"
-reply_style = "Speak with a little anime flavor, occasionally use words like 'wow' and 'eh', keep the tone lively and cute, and like using emojis"
-multiple_reply_style = [
-    "Reply in a coquettish tone and use more sparkling-eye expressions",
-    "Reply in a teasing tone, like looking at a fool",
-    "Reply in an excited tone, like discovering a new continent"
-]
-multiple_probability = 0.3
-
-[visual]
-planner_mode = "auto"    # Automatically decide whether to look at images
-replyer_mode = "auto"    # Automatically decide how to reply to images
-visual_style = "请用中文描述这张图片的内容。如果有文字，请把文字描述概括出来，请留意其主题，直观感受，输出为一段平文本，最多30字，请注意不要分点，就输出一段文本"
-```
-
----
-
-## 💬 Chat and Message Receiving Configuration
-
-The `[chat]` section and `[message_receive]` section in `bot_config.toml` control MaiMai's chat behavior. They are like teaching her "when to speak and when to stay quiet".
-
-## 🎛️ Chat Configuration [chat]
+`[chat]` controls reply frequency, context length, group/private chat prompts, and dynamic talk frequency rules.
 
 ```toml
 [chat]
 talk_value = 1.0
 mentioned_bot_reply = false
 inevitable_at_reply = true
+enable_reply_quote = true
 max_context_size = 30
 planner_interrupt_max_consecutive_count = 2
 group_chat_prompt = "..."
 private_chat_prompts = "..."
 chat_prompts = []
 enable_talk_value_rules = true
+```
 
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `talk_value` | `float` | `1.0` | Chat frequency. Smaller means quieter, range `0-1` |
+| `mentioned_bot_reply` | `bool` | `false` | Whether to tend to reply when the bot name is mentioned in plain text |
+| `inevitable_at_reply` | `bool` | `true` | Whether to always reply when @mentioned |
+| `enable_reply_quote` | `bool` | `true` | Whether to include quoted replies |
+| `max_context_size` | `int` | `30` | Number of context messages sent to the model |
+| `planner_interrupt_max_consecutive_count` | `int` | `2` | Maximum consecutive planner interruptions by new messages. `0` disables interruption protection |
+| `group_chat_prompt` | `str` | See default config | General group chat instructions |
+| `private_chat_prompts` | `str` | See default config | General private chat instructions |
+| `chat_prompts` | `list[ExtraPromptItem]` | `[]` | Extra prompts by platform/chat flow |
+| `enable_talk_value_rules` | `bool` | `true` | Whether to enable dynamic talk frequency rules |
+| `talk_value_rules` | `list[TalkRulesItem]` | Two default rules | Adjusts `talk_value` by chat flow and time range |
+
+### talk_value_rules
+
+```toml
 [[chat.talk_value_rules]]
 platform = ""
 item_id = ""
@@ -272,398 +139,376 @@ time = "00:00-08:59"
 value = 0.8
 ```
 
-### talk_value 🎚️ "How talkative is MaiMai?"
+| Field | Type | Description |
+|--------|------|------|
+| `platform` | `str` | Platform. Empty together with `item_id` means global |
+| `item_id` | `str` | User/group ID. Empty together with `platform` means global |
+| `rule_type` | `"group" \| "private"` | Chat flow type |
+| `time` | `str` | Time range in `"HH:MM-HH:MM"` format. Overnight ranges are supported |
+| `value` | `float` | Chat frequency value for this range, `0-1` |
 
-**What is this?** Controls MaiMai's talkativeness. `0` is the most silent, `1` is the most talkative.
+### chat_prompts
 
-**How to fill?** A decimal between 0 and 1, such as `0.3`, `0.7`, or `1.0`.
-
-**Effect comparison:**
-| Value | Effect | Analogy |
-|------|------|------|
-| `0.0` | Almost never speaks | Cool honor student |
-| `0.5` | Occasionally says something | Normal classmate |
-| `1.0` | Speaks actively | Talkative friend |
-
-**Examples:**
 ```toml
-[chat]
-talk_value = 0.3  # MaiMai is quieter and occasionally joins in
-talk_value = 0.8  # MaiMai is more active and often joins discussions
+[[chat.chat_prompts]]
+platform = "qq"
+item_id = "123456"
+rule_type = "group"
+prompt = "Speak more briefly in this group."
 ```
 
-### mentioned_bot_reply 🏷️ "Reply when her name is mentioned?"
+`platform`, `item_id`, and `prompt` must all be filled in; otherwise the extra prompt entry is invalid.
 
-**What is this?** Controls whether MaiMai replies when someone mentions her name in a group, but does not @ her.
+## Message Receiving [message_receive]
 
-**How to fill?** `true` means reply, `false` means ignore it.
+`[message_receive]` controls image parsing and message filtering.
 
-**Examples:**
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `image_parse_threshold` | `int` | `5` | Parse images only when image count in one message does not exceed this threshold |
+| `ban_words` | `set[str]` | `set()` | Filter word list |
+| `ban_msgs_regex` | `set[str]` | `set()` | Filter regex list. Invalid regex causes configuration validation failure |
+
+## Memory [memory]
+
+`[memory]` controls long-term memory retrieval, person fact writeback, chat summary writeback, and feedback correction.
+
+### Common Memory Fields
+
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `global_memory` | `bool` | `false` | Whether memory retrieval can ignore the current chat flow restriction |
+| `global_memory_blacklist` | `list[TargetItem]` | `[]` | Global memory blacklist, used to exclude specific chat flows |
+| `enable_memory_query_tool` | `bool` | `true` | Whether to enable Maisaka's built-in long-term memory tool `query_memory` |
+| `memory_query_default_limit` | `int` | `5` | Default return count for `query_memory`, range `1-20` |
+| `person_fact_writeback_enabled` | `bool` | `true` | Whether to extract and write person facts after replies |
+| `chat_summary_writeback_enabled` | `bool` | `true` | Whether to write chat summaries by message window |
+| `chat_summary_writeback_message_threshold` | `int` | `12` | Message window threshold for chat summary writeback |
+| `chat_summary_writeback_context_length` | `int` | `50` | Number of messages to look back for summary writeback, range `1-500` |
+
+### global_memory_blacklist
+
 ```toml
-[chat]
-mentioned_bot_reply = true   # If someone says "where is MaiMai?", she appears
-mentioned_bot_reply = false  # She only replies when @mentioned
+[[memory.global_memory_blacklist]]
+platform = "qq"
+item_id = "123456"
+rule_type = "group"
 ```
 
-### inevitable_at_reply 📧 "Always reply when @mentioned?"
+Common `TargetItem` fields:
 
-**What is this?** Controls whether MaiMai must reply when she is @mentioned, regardless of `talk_value`.
+| Field | Type | Description |
+|--------|------|------|
+| `platform` | `str` | Platform. Empty together with `item_id` means global |
+| `item_id` | `str` | User/group ID. Empty together with `platform` means global |
+| `rule_type` | `"group" \| "private"` | Chat flow type |
 
-**How to fill?** `true` means always reply, `false` means reply depending on mood.
+### Feedback Correction Fields
 
-**Examples:**
+Feedback correction is disabled by default and is an advanced feature. It uses user feedback after `query_memory` to try correcting stale memories.
+
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `feedback_correction_enabled` | `bool` | `false` | Whether to enable feedback-driven delayed memory correction |
+| `feedback_correction_window_hours` | `float` | `12.0` | Feedback window duration in hours |
+| `feedback_correction_check_interval_minutes` | `int` | `30` | Polling interval in minutes |
+| `feedback_correction_batch_size` | `int` | `20` | Maximum tasks per round, range `1-200` |
+| `feedback_correction_auto_apply_threshold` | `float` | `0.85` | Minimum confidence for automatically applying correction, range `0-1` |
+| `feedback_correction_max_feedback_messages` | `int` | `30` | Maximum feedback messages used per correction task |
+| `feedback_correction_prefilter_enabled` | `bool` | `true` | Whether to enable prefiltering |
+| `feedback_correction_paragraph_mark_enabled` | `bool` | `true` | Whether to mark affected paragraphs with corrected-old-fact metadata |
+| `feedback_correction_paragraph_hard_filter_enabled` | `bool` | `true` | Whether to hard-filter paragraphs with stale marks in user queries |
+| `feedback_correction_profile_refresh_enabled` | `bool` | `true` | Whether to enqueue affected person profiles for refresh |
+| `feedback_correction_profile_force_refresh_on_read` | `bool` | `true` | Whether to force-refresh dirty profiles on read |
+| `feedback_correction_episode_rebuild_enabled` | `bool` | `true` | Whether to enqueue affected sources for episode rebuild |
+| `feedback_correction_episode_query_block_enabled` | `bool` | `true` | Whether to block user queries while episode sources are rebuilding |
+| `feedback_correction_reconcile_interval_minutes` | `int` | `5` | Second-stage consistency polling interval |
+| `feedback_correction_reconcile_batch_size` | `int` | `20` | Queue batch size for second-stage consistency |
+
+## Expression Learning [expression]
+
+`[expression]` controls expression learning, jargon learning, expression auto-checking, and shared expression groups.
+
+| Field | Type | Description |
+|--------|------|------|
+| `learning_list` | `list[LearningItem]` | Expression learning configuration by chat flow |
+| `advanced_chosen` | `bool` | Whether to enable sub-agent based second-stage expression selection |
+| `expression_groups` | `list[ExpressionGroup]` | Shared expression learning groups |
+| `expression_checked_only` | `bool` | Whether to select only checked and non-rejected expressions |
+| `expression_self_reflect` | `bool` | Whether to enable automatic expression optimization |
+| `expression_auto_check_interval` | `int` | Auto-check interval in seconds |
+| `expression_auto_check_count` | `int` | Number of expressions randomly selected for each auto-check |
+| `expression_auto_check_custom_criteria` | `list[str]` | Additional custom evaluation criteria |
+| `all_global_jargon` | `bool` | Whether to enable global jargon mode |
+
+### learning_list
+
 ```toml
-[chat]
-inevitable_at_reply = true   # Always reply when @mentioned (recommended)
-inevitable_at_reply = false  # May ignore @mentions, which can feel aloof
-```
-
-### max_context_size 🧠 "How many messages can she remember?"
-
-**What is this?** Controls how many recent chat messages MaiMai can "remember" at once to understand context.
-
-**How to fill?** A number. Larger values preserve more context, but also consume more AI resources.
-
-**Examples:**
-```toml
-[chat]
-max_context_size = 20  # Remember the latest 20 messages
-max_context_size = 50  # Remember the latest 50 messages, better context
-```
-
-::: tip 💡 Tip
-Usually 30 messages is enough. Too many can make the conversation more confusing.
-:::
-
-### enable_talk_value_rules ⏰ "Adjust talkativeness by time?"
-
-**What is this?** Lets MaiMai use different activity levels in different time periods.
-
-**How to fill?** `true` to enable, `false` to disable.
-
-**Examples:**
-```toml
-[chat]
-enable_talk_value_rules = true   # Enable time-based activity (recommended)
-enable_talk_value_rules = false  # Use the same activity level all day
-```
-
-### talk_value_rules 📅 "Specific time period rules"
-
-**What is this?** Sets different activity levels for different time periods.
-
-**How to write?** Write multiple rules. Each rule includes a time period and activity value.
-
-**Example:**
-```toml
-[[chat.talk_value_rules]]
+[[expression.learning_list]]
 platform = ""
 item_id = ""
 rule_type = "group"
-time = "00:00-08:59"  # Midnight to 9 AM
-value = 0.3           # MaiMai is quiet and barely speaks
-
-[[chat.talk_value_rules]]
-platform = ""
-item_id = ""
-rule_type = "group"
-time = "09:00-18:59"  # Daytime work hours
-time = "09:00-23:59"  # 9 AM to 11 PM
-value = 0.8           # MaiMai is more active and often joins discussions
-
-[[chat.talk_value_rules]]
-platform = ""
-item_id = ""
-rule_type = "group"
-time = "22:00-23:59"  # After 10 PM
-value = 0.5           # MaiMai is quieter and occasionally says something
+use_expression = true
+enable_learning = true
+enable_jargon_learning = true
 ```
 
-::: tip ⏰ Time Format
-Overnight periods are supported. For example, `"22:00-06:00"` means 10 PM to 6 AM the next day.
-:::
+| Field | Type | Description |
+|--------|------|------|
+| `platform` | `str` | Platform. Empty together with `item_id` means global |
+| `item_id` | `str` | User/group ID. Empty together with `platform` means global |
+| `rule_type` | `"group" \| "private"` | Chat flow type |
+| `use_expression` | `bool` | Whether to use learned expressions |
+| `enable_learning` | `bool` | Whether to enable expression optimization learning |
+| `enable_jargon_learning` | `bool` | Whether to enable jargon learning |
 
-## 📨 Message Receiving Configuration [message_receive]
+## Voice [voice]
 
-Controls how MaiMai handles received messages, including which messages should be processed and which should be ignored.
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `enable_asr` | `bool` | See default config | Whether to enable speech recognition |
+
+## Emoji [emoji]
+
+| Field | Type | Description |
+|--------|------|------|
+| `emoji_send_num` | `int` | Number of emoji candidates to choose from when sending, maximum `64` |
+| `max_reg_num` | `int` | Maximum number of registered emojis |
+| `do_replace` | `bool` | Whether to replace old emojis after reaching the maximum |
+| `check_interval` | `int` | Emoji check interval in minutes |
+| `steal_emoji` | `bool` | Whether to collect emojis from chat |
+| `content_filtration` | `bool` | Whether to enable emoji filtering |
+| `filtration_prompt` | `str` | Emoji filtering requirement |
+
+## Keyword Reaction [keyword_reaction]
 
 ```toml
-[message_receive]
-image_parse_threshold = 5
-ban_words = []
-ban_msgs_regex = []
+[[keyword_reaction.keyword_rules]]
+keywords = ["keyword"]
+reaction = "reaction after trigger"
+
+[[keyword_reaction.regex_rules]]
+regex = ["^regex.*"]
+reaction = "reaction after trigger"
 ```
 
-### image_parse_threshold 🖼️ "How many images to parse at once?"
+| Field | Type | Description |
+|--------|------|------|
+| `keyword_rules` | `list[KeywordRuleConfig]` | Keyword rule list |
+| `regex_rules` | `list[KeywordRuleConfig]` | Regex rule list |
 
-**What is this?** Controls the maximum number of images parsed in a single message, avoiding performance issues caused by too many images.
+`KeywordRuleConfig` fields:
 
-**How to fill?** A number. If the number of images exceeds it, MaiMai will not parse them.
+| Field | Type | Description |
+|--------|------|------|
+| `keywords` | `list[str]` | Keyword list |
+| `regex` | `list[str]` | Regex list |
+| `reaction` | `str` | Reaction after keyword or regex trigger |
 
-**Examples:**
+## Response Post-Processing
+
+### response_post_process
+
+| Field | Type | Description |
+|--------|------|------|
+| `enable_response_post_process` | `bool` | Whether to enable response post-processing, including typo generation and response splitting |
+
+### chinese_typo
+
+| Field | Type | Description |
+|--------|------|------|
+| `enable` | `bool` | Whether to enable Chinese typo generation |
+| `error_rate` | `float` | Single-character replacement probability |
+| `min_freq` | `int` | Minimum character frequency threshold |
+| `tone_error_rate` | `float` | Tone error probability |
+| `word_replace_rate` | `float` | Whole-word replacement probability |
+
+### response_splitter
+
+| Field | Type | Description |
+|--------|------|------|
+| `enable` | `bool` | Whether to enable response splitting |
+| `max_length` | `int` | Maximum allowed response length |
+| `max_sentence_num` | `int` | Maximum allowed sentence count |
+| `enable_kaomoji_protection` | `bool` | Whether to protect kaomoji |
+| `enable_overflow_return_all` | `bool` | Whether to return all content when sentence count exceeds the limit |
+
+## Telemetry and Debug
+
+### telemetry
+
+| Field | Type | Description |
+|--------|------|------|
+| `enable` | `bool` | Whether to enable telemetry |
+
+### debug
+
+| Field | Type | Description |
+|--------|------|------|
+| `enable_maisaka_stage_board` | `bool` | Whether to enable the Maisaka stage board |
+| `show_maisaka_thinking` | `bool` | Whether to show replyer reasoning |
+| `fold_maisaka_thinking` | `bool` | Whether to fold the Maisaka prompt display entry |
+| `show_jargon_prompt` | `bool` | Whether to show jargon-related prompts |
+| `show_memory_prompt` | `bool` | Whether to show memory retrieval prompts |
+| `enable_reply_effect_tracking` | `bool` | Whether to enable reply effect score tracking |
+
+## Message Service [maim_message]
+
+`[maim_message]` contains both the legacy WebSocket service and the additional new API Server configuration.
+
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `ws_server_host` | `str` | `127.0.0.1` | Legacy WebSocket server host |
+| `ws_server_port` | `int` | `8080` | Legacy WebSocket server port |
+| `auth_token` | `list[str]` | `[]` | Legacy API auth tokens. Empty means no auth |
+| `enable_api_server` | `bool` | See default config | Whether to enable the additional new API Server |
+| `api_server_host` | `str` | See default config | New API Server host |
+| `api_server_port` | `int` | See default config | New API Server port |
+| `api_server_use_wss` | `bool` | See default config | Whether the new API Server uses WSS |
+| `api_server_cert_file` | `str` | `""` | SSL certificate file path |
+| `api_server_key_file` | `str` | `""` | SSL key file path |
+| `api_server_allowed_api_keys` | `list[str]` | `[]` | Allowed API key list. Empty allows all connections |
+
+## WebUI [webui]
+
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `enabled` | `bool` | `true` | Whether to enable WebUI |
+| `host` | `str` | `127.0.0.1` | WebUI bind host |
+| `port` | `int` | `8001` | WebUI bind port |
+| `mode` | `"development" \| "production"` | `"production"` | WebUI running mode |
+| `anti_crawler_mode` | `"false" \| "strict" \| "loose" \| "basic"` | `"basic"` | Anti-crawler mode |
+| `allowed_ips` | `str` | `127.0.0.1` | IP whitelist, comma-separated; supports exact IP, CIDR, and wildcard |
+| `trusted_proxies` | `str` | `""` | Trusted proxy IP list |
+| `trust_xff` | `bool` | `false` | Whether to parse `X-Forwarded-For` |
+| `secure_cookie` | `bool` | `false` | Whether to enable secure cookies, HTTPS only |
+| `enable_paragraph_content` | `bool` | `false` | Whether to load full paragraph content in the knowledge graph; uses extra memory |
+
+## Database [database]
+
+| Field | Type | Default | Description |
+|--------|------|--------|------|
+| `save_binary_data` | `bool` | `false` | Whether to save binary data such as voice as independent files. Only affects newly stored messages |
+
+## MCP [mcp]
+
+`[mcp]` controls MaiBot's MCP client host capabilities and external MCP server connections.
+
+| Field | Type | Description |
+|--------|------|------|
+| `enable` | `bool` | Whether to enable MCP |
+| `client` | `MCPClientConfig` | MCP client host capability configuration |
+| `servers` | `list[MCPServerItemConfig]` | MCP server configuration list |
+
+### mcp.client
+
+| Field | Type | Description |
+|--------|------|------|
+| `client_name` | `str` | MCP client implementation name |
+| `client_version` | `str` | MCP client implementation version |
+| `roots.enable` | `bool` | Whether to expose Roots capability to MCP servers |
+| `roots.items` | `list[MCPRootItemConfig]` | Roots list |
+| `sampling.enable` | `bool` | Whether to declare Sampling capability |
+| `sampling.task_name` | `str` | Main model task name used for Sampling requests |
+| `sampling.include_context_support` | `bool` | Whether to declare support for non-`none` `includeContext` semantics |
+| `sampling.tool_support` | `bool` | Whether to declare support for continuing to use tools in Sampling |
+| `elicitation.enable` | `bool` | Whether to declare Elicitation capability |
+| `elicitation.allow_form` | `bool` | Whether to allow form-mode Elicitation |
+| `elicitation.allow_url` | `bool` | Whether to allow URL-mode Elicitation |
+
+### mcp.servers
+
 ```toml
-[message_receive]
-image_parse_threshold = 3  # Ignore image parsing when there are more than 3 images
-image_parse_threshold = 10 # Can parse many images, but may be slower
+[[mcp.servers]]
+name = "example"
+enabled = true
+transport = "stdio"
+command = "uvx"
+args = ["some-mcp-server"]
+env = {}
 ```
 
-### ban_words 🚫 "Words I do not like"
+| Field | Type | Description |
+|--------|------|------|
+| `name` | `str` | Server name, must be unique |
+| `enabled` | `bool` | Whether to enable this server |
+| `transport` | `"stdio" \| "streamable_http"` | Transport mode |
+| `command` | `str` | Command used to start the server in `stdio` mode |
+| `args` | `list[str]` | Command arguments in `stdio` mode |
+| `env` | `dict[str, str]` | Extra environment variables in `stdio` mode |
+| `url` | `str` | MCP endpoint in `streamable_http` mode |
+| `headers` | `dict[str, str]` | Extra HTTP headers |
+| `http_timeout_seconds` | `float` | HTTP request timeout |
+| `read_timeout_seconds` | `float` | Session read timeout |
+| `authorization.mode` | `"none" \| "bearer"` | HTTP authorization mode |
+| `authorization.bearer_token` | `str` | Bearer Token, only used when `mode = "bearer"` |
 
-**What is this?** Sets sensitive words. Messages containing these words will be ignored by MaiMai.
+## Plugin Runtime [plugin_runtime]
 
-**How to fill?** Write a list of words.
+`[plugin_runtime]` controls the plugin runner and plugin runtime browser rendering capability.
 
-**Example:**
+| Field | Type | Description |
+|--------|------|------|
+| `enabled` | `bool` | Whether to enable the plugin system |
+| `health_check_interval_sec` | `float` | Health check interval |
+| `max_restart_attempts` | `int` | Maximum auto-restarts after runner crash |
+| `runner_spawn_timeout_sec` | `float` | Timeout waiting for runner subprocess startup and registration |
+| `hook_blocking_timeout_sec` | `float` | Global timeout for blocking hook steps |
+| `ipc_socket_path` | `str` | Custom IPC socket path, Linux/macOS only; empty means auto-generated |
+
+### plugin_runtime.render
+
+| Field | Type | Description |
+|--------|------|------|
+| `enabled` | `bool` | Whether to enable browser rendering in plugin runtime |
+| `browser_ws_endpoint` | `str` | Existing Chromium CDP address to reuse first |
+| `executable_path` | `str` | Browser executable path; empty means auto-detect |
+| `browser_install_root` | `str` | Playwright-managed browser directory |
+| `headless` | `bool` | Whether to launch browser in headless mode |
+| `launch_args` | `list[str]` | Browser launch arguments |
+| `concurrency_limit` | `int` | Maximum concurrent rendering tasks |
+| `startup_timeout_sec` | `float` | Browser connection or startup timeout |
+| `render_timeout_sec` | `float` | Default timeout for a single render |
+| `auto_download_chromium` | `bool` | Whether to automatically download Playwright Chromium if no browser is found |
+| `download_connection_timeout_sec` | `float` | Connection timeout when automatically downloading Chromium |
+| `restart_after_render_count` | `int` | Rebuild local browser after this many renders; `0` disables this policy |
+
+## Common Examples
+
+### Beginner Minimal Configuration
+
 ```toml
-[message_receive]
-ban_words = ["advertisement", "promotion", "scam"]  # Ignore messages containing these words
-```
+[bot]
+platform = "qq"
+qq_account = 123456789
+nickname = "MaiMai"
+alias_names = ["XiaoMai"]
 
-### ban_msgs_regex 🚫 "Message formats I ignore"
-
-**What is this?** Uses regular expressions to match message formats you do not want MaiMai to handle.
-
-**How to fill?** Write a list of regular expressions. You need to understand regex syntax.
-
-**Example:**
-```toml
-[message_receive]
-ban_msgs_regex = [
-    "^\\[System\\].*",    # Ignore system messages
-    "^Lottery.*",         # Ignore lottery messages
-    ".*join group.*"      # Ignore group-joining related messages
-]
-```
-
-::: warning ⚠️ Note
-Invalid regular expressions can cause MaiMai to fail to start. If you do not know how to use regex, leave this empty.
-:::
-
-## 🎯 Complete Configuration Example
-
-```toml
 [chat]
-talk_value = 0.7                    # Medium activity
-mentioned_bot_reply = true          # Reply when name is mentioned
-inevitable_at_reply = true          # Always reply when @mentioned
-max_context_size = 30               # Remember 30 messages
-enable_talk_value_rules = true      # Enable time-based activity
+talk_value = 0.7
+inevitable_at_reply = true
+max_context_size = 30
 
-[[chat.talk_value_rules]]
-platform = ""
-item_id = ""
-rule_type = "group"
-time = "00:00-08:59"
-value = 0.2   # Very quiet in early morning
-
-[[chat.talk_value_rules]]
-platform = ""
-item_id = ""
-rule_type = "group"
-time = "09:00-22:59"
-value = 0.8   # Very active during the day
-
-[[chat.talk_value_rules]]
-platform = ""
-item_id = ""
-rule_type = "group"
-time = "23:00-23:59"
-value = 0.3   # Quieter at night
-
-[message_receive]
-image_parse_threshold = 5           # Parse at most 5 images
-ban_words = ["advertisement", "promotion"] # Ignore ads
-ban_msgs_regex = []                 # No regex filtering
-```
-
----
-
-## 🧠 Memory Configuration
-
-The `[memory]` section in `bot_config.toml` gives MaiMai "memory", so she can remember your conversations like a person and understand you better over time.
-
-## 🧠 What is the memory system?
-
-Imagine MaiMai has a small notebook that records:
-- ✅ Your preferences and habits ("Xiao Ming likes cats and dislikes dogs")
-- ✅ Important things you talked about ("Last week you said you wanted to travel")
-- ✅ Various interesting information ("Xiao Hong is a programmer and can play guitar")
-
-The more she remembers, the better she understands you, and the more natural the chat becomes.
-
-## 📋 Basic Memory Configuration
-
-```toml
 [memory]
 global_memory = false
 enable_memory_query_tool = true
-memory_query_default_limit = 5
 person_fact_writeback_enabled = true
 chat_summary_writeback_enabled = true
-chat_summary_writeback_message_threshold = 12
-chat_summary_writeback_context_length = 50
 ```
 
-### global_memory 🌍 "Can memories cross chats?"
-
-**What is this?** Controls whether MaiMai can remember content from one group while chatting in another group.
-
-**How to fill?** `true` allows cross-chat memory, `false` only remembers within the current chat.
-
-**Examples:**
-```toml
-[memory]
-global_memory = false  # Conservative setting, only remember current chat (recommended)
-global_memory = true   # Open setting, all chats share memory
-```
-
-::: warning ⚠️ Privacy Reminder
-Enabling global memory may involve privacy issues. It is recommended to use it together with a blacklist.
-:::
-
-### enable_memory_query_tool 🔍 "Let MaiMai actively search memory?"
-
-**What is this?** Lets MaiMai actively "flip through her notebook" during chat to look up previous records.
-
-**How to fill?** `true` to enable, `false` to disable.
-
-**Examples:**
-```toml
-[memory]
-enable_memory_query_tool = true   # MaiMai actively recalls things (recommended)
-enable_memory_query_tool = false  # MaiMai does not actively query memory
-```
-
-### memory_query_default_limit 🔢 "How many memories to query at once?"
-
-**What is this?** Controls how many things MaiMai can recall at most each time.
-
-**How to fill?** A number between 1 and 20.
-
-**Examples:**
-```toml
-[memory]
-memory_query_default_limit = 3   # Recall 3 related memories
-memory_query_default_limit = 8   # Recall 8 related memories
-```
-
-## 📝 Automatic Memory Recording
-
-MaiMai has two "assistants" that automatically help her take notes:
-
-### person_fact_writeback_enabled 👤 "Remember person information"
-
-**What is this?** After each reply, MaiMai automatically extracts information about people and records it.
-
-**How to fill?** `true` to enable, `false` to disable.
-
-**What does it remember?** Personal information such as preferences, identity, and habits.
-
-**Examples:**
-```toml
-[memory]
-person_fact_writeback_enabled = true   # MaiMai remembers what kind of person you are (recommended)
-person_fact_writeback_enabled = false  # MaiMai does not remember person information
-```
-
-### chat_summary_writeback_enabled 💬 "Remember chat summaries"
-
-**What is this?** After chatting for a while, MaiMai automatically summarizes the conversation and records it.
-
-**How to fill?** `true` to enable, `false` to disable.
-
-**What does it remember?** Main topics, important events, and interesting content from the chat.
-
-**Examples:**
-```toml
-[memory]
-chat_summary_writeback_enabled = true   # MaiMai summarizes chat content (recommended)
-chat_summary_writeback_enabled = false  # MaiMai does not remember chat summaries
-```
-
-### chat_summary_writeback_message_threshold 📊 "How many messages before summarizing?"
-
-**What is this?** Controls how many messages must accumulate before an automatic summary is generated.
-
-**How to fill?** A number. Larger values summarize less frequently.
-
-**Examples:**
-```toml
-[memory]
-chat_summary_writeback_message_threshold = 8   # Summarize after 8 messages, frequent
-chat_summary_writeback_message_threshold = 20  # Summarize after 20 messages, saves resources
-```
-
-### chat_summary_writeback_context_length 📖 "How many messages to read when summarizing?"
-
-**What is this?** Controls how many chat messages are referenced when generating a summary.
-
-**How to fill?** A number. Larger values produce more detailed summaries, but consume more AI resources.
-
-**Examples:**
-```toml
-[memory]
-chat_summary_writeback_context_length = 30  # Use 30 messages to generate summary
-chat_summary_writeback_context_length = 80  # Use 80 messages to generate summary, more detailed
-```
-
-## 🔧 Advanced Features (Beginners Can Skip)
-
-### Feedback correction system (disabled by default)
-
-MaiMai checks later user feedback. If she finds that she remembered something incorrectly before, she can automatically correct it.
+### Connect an Adapter
 
 ```toml
-[memory]
-feedback_correction_enabled = false  # Disabled by default, recommended for beginners
+[maim_message]
+ws_server_host = "127.0.0.1"
+ws_server_port = 8080
+auth_token = []
 ```
 
-::: tip 💡 Recommendation
-This feature is relatively complex. Consider enabling it after you are familiar with the basic functions.
-:::
+If the adapter runs in a Docker network or on another machine, adjust the listen address and port according to your deployment.
 
-## 🎯 Recommended Configuration (For Beginners)
+## Next Steps
 
-```toml
-[memory]
-global_memory = false               # Only remember current chat (protect privacy)
-enable_memory_query_tool = true     # Let MaiMai actively recall
-memory_query_default_limit = 5      # Recall 5 memories at once
-
-person_fact_writeback_enabled = true     # Remember person information
-chat_summary_writeback_enabled = true    # Remember chat summaries
-chat_summary_writeback_message_threshold = 12  # Summarize after 12 messages
-chat_summary_writeback_context_length = 50     # Use 50 messages for summary
-
-feedback_correction_enabled = false   # Do not enable correction yet
-```
-
-## 🚀 Memory System Workflow
-
-```
-You chat → MaiMai replies
-     ↓
-Assistant 1: "This person seems to like cats" → Write to notebook
-     ↓
-Assistant 2: "There have been many messages, summarize them" → Write to notebook
-     ↓
-Next chat → MaiMai checks notebook → "Right, you like cats!"
-```
-
-## ⚠️ Important Reminder
-
-`bot_config.toml` is MaiBot's core configuration file. It contains basic identity, character setting, chat behavior, memory, message receiving, and visual capability settings.
-
-**Two items that should be configured first:**
-- ✅ `platform` - Tell MaiBot which platform to use
-- ✅ `qq_account` - Tell MaiBot her QQ number
-
-**After finishing bot configuration, don't forget:**
-1. 🤖 Configure [Model](./model-config.md) - Give MaiMai an AI brain
-2. 🌐 Configure WebUI or adapters - Let MaiMai connect to the platform you need
-
-## 🚀 Next Steps
-
-After basic information and behavior are configured:
-- 🆕 **Newbie Recommended**: Go see [Model Configuration](./model-config.md) to give MaiMai an AI brain
-- 🔌 **Want to connect a platform**: See [Adapter Configuration](../adapters/index.md)
+- Configure models: see [Model Configuration](./model-config.md)
+- Connect QQ: see [NapCat Adapter](../adapters/napcat.md)
+- Manage WebUI: see [WebUI Configuration Management](../webui/config-management.md)
