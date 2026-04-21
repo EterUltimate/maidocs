@@ -2,28 +2,34 @@
 title: Deployment Overview
 ---
 
-# 🚀 MaiBot Deployment Overview
+# MaiBot Deployment Overview
 
-**MaiBot is a smart chatbot** that can chat with you, tell jokes, and answer questions. You just need to prepare two things to get it running:
+**MaiBot is a personified intelligent agent** that can chat with you, continuously learn about you, collect information, and extend its abilities through plugins or MCP.
 
-📱 **A QQ side account** (for logging in the bot)
-🔑 **An AI model API key** (like a key that lets the bot think and talk)
+MaiBot can talk through the local command line, or connect to different IM platforms or arbitrary clients through adapter plugins.
+
+Currently the QQ (NapCat) platform is the most used and best supported platform, so this guide uses QQ as the example.
+
+## Deployment Preparation
+
+📱 **A QQ side account** (used to log in to the NapCat client)
+🔑 **An AI model API key (requires access to a vision model and an embedding model)**
 
 ## 📦 Choose Your Deployment Method
 
-MaiBot offers 2 installation methods, choose any one:
+MaiBot offers 2 installation methods, choose either one:
 
 | Method | Suitable For | Difficulty |
 |------|---------|------|
 | [Source Installation](./installation.md) | Users who want to tinker and control details | ⭐⭐ |
-| [Docker Deployment](./docker.md) | One-click deployment, server users | ⭐ |
+| [Docker Deployment (documentation needs updating)](./docker.md) | Users who want one-click deployment or server deployment | ⭐ |
 
-::: tip 💡 Beginner Recommendation
-First time using? Follow this order:
+::: tip 💡 How to connect QQ
+First time using it? Recommended order:
 
-1. **Install MaiBot first** → [Installation Guide](./installation.md)
-2. **Then connect to QQ** → [NapCat Adapter](../adapters/napcat.md)
-3. **Finally configure AI model** → [Model Configuration](../configuration/model-config.md)
+1. **Install MaiBot first**
+2. **Then connect to QQ (or another IM platform)** → [NapCat Adapter](../adapters/napcat.md)
+3. **Finally configure the AI model and fine-tuning settings** → [Model Configuration](../configuration/model-config.md)
 :::
 
 ## ⚡ 3-Minute Quick Start
@@ -35,11 +41,9 @@ If you already have Python environment and AI API ready, you can start right awa
 git clone https://github.com/MaiM-with-u/MaiBot.git
 cd MaiBot
 
-# 2. Install dependencies (like installing parts for the robot)
+# 2. Install dependencies
 uv sync
 
 # 3. Launch!
 uv run python bot.py
 ```
-
-The first startup will ask you to agree to the user agreement, just type "agree". That's it!
