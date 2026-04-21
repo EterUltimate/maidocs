@@ -19,10 +19,7 @@ title: 用户手册
 
 ### ⚙️ 配置详解
 
-- [基本配置](/manual/configuration/bot-config) - 平台、昵称、别名等基础设置
-- [人格配置](/manual/configuration/personality-config) - 定义 AI 的人格特质和表达风格
-- [聊天配置](/manual/configuration/chat-config) - 控制发言频率、上下文长度、群聊/私聊行为
-- [记忆配置](/manual/configuration/memory-config) - 长期记忆和自动记忆写回设置
+- [Bot 配置](/manual/configuration/bot-config) - 平台、昵称、人格、聊天、记忆等基础设置
 - [模型配置](/manual/configuration/model-config) - LLM 模型提供商和多模型回退
 
 ### 🧠 功能详解

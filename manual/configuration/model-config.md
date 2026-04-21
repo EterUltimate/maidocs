@@ -2,11 +2,15 @@
 title: 模型配置
 ---
 
-# 🧠 设置AI大脑
+# 设置AI大脑
 
-`model_config.toml` 是给麦麦配置"AI大脑"的文件，就像给她选择用哪个品牌的手机一样 - 不同品牌功能差不多，但各有特色。
+`model_config.toml` 是给麦麦配置"AI大脑"的文件，决定了麦麦的不同组件使用什么LLM
 
-## 📋 配置文件结构
+我们推荐根据不同任务的特性来分配不同的模型
+
+麦麦的配置必须一个LLM模型（或VLM），一个VLM模型和嵌入模型
+
+## 配置文件结构
 
 ```toml
 # 配置文件版本
@@ -32,23 +36,23 @@ max_tokens = 1024
 temperature = 0.3
 ```
 
-## 🏪 API 提供商 [[api_providers]]
+## API 提供商 [[api_providers]]
 
-API 提供商就像不同的手机品牌：苹果、华为、小米，都能打电话，但各有特点。
+API 提供商代表提供LLM服务的对象
 
 ### 基础配置（必填）
 
 | 🏷️ 配置项 | 💡 是什么 | 📝 怎么填 |
 |-----------|----------|----------|
 | `name` | 服务商名字 | 自己取个名字，比如"deepseek"、"openai" |
-| `base_url` | API地址 | 服务商提供的网址 |
-| `api_key` | 密钥 | 注册后获得的密钥，像密码一样 |
+| `base_url` | API地址 | 服务商提供的url |
+| `api_key` | 密钥 | 注册后获得的密钥 |
 
 ### 常见服务商配置示例
 
 ::: code-group
 
-```toml [DeepSeek - 推荐👍]
+```toml [DeepSeek]
 [[api_providers]]
 name = "deepseek"
 base_url = "https://api.deepseek.com/v1"
@@ -57,7 +61,7 @@ client_type = "openai"
 auth_type = "bearer"
 ```
 
-```toml [OpenAI - 原版]
+```toml [OpenAI]
 [[api_providers]]
 name = "openai"
 base_url = "https://api.openai.com/v1"
@@ -66,22 +70,22 @@ client_type = "openai"
 auth_type = "bearer"
 ```
 
-```toml [SiliconFlow - 国内友好]
+```toml [阿里百炼]
 [[api_providers]]
-name = "siliconflow"
-base_url = "https://api.siliconflow.cn/v1"
+name = "aliyun"
+base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 api_key = "sk-你的密钥"
 client_type = "openai"
 auth_type = "bearer"
 ```
 
-```toml [本地模型 - 高级玩家]
+```toml [字节火山]
 [[api_providers]]
-name = "local"
-base_url = "http://localhost:8080/v1"
-api_key = ""                    # 本地可以留空
+name = "volcengine"
+base_url = "https://ark.cn-beijing.volces.com/api/v3"
+api_key = "sk-你的密钥"
 client_type = "openai"
-auth_type = "none"              # 本地不需要认证
+auth_type = "bearer"
 ```
 
 :::
@@ -94,17 +98,18 @@ auth_type = "none"              # 本地不需要认证
 | `max_retry` | 失败重试次数 | `2` 次 |
 | `retry_interval` | 重试间隔 | `10` 秒 |
 
-## 🤖 模型列表 [[models]]
+## 模型列表 [[models]]
 
-模型就是具体的AI，比如GPT-4、Claude、DeepSeek等。
+模型就是具体的LLM，比如GPT-5.4、Claude-4.6-opus、DeepSeek V4等。
 
 ### 基础配置（必填）
 
 | 🏷️ 配置项 | 💡 是什么 | 📝 怎么填 |
 |-----------|----------|----------|
-| `name` | 模型名字 | 自己取个名字，比如"gpt-4"、"deepseek-chat" |
+| `name` | 模型名字 | 自己取个名字，比如"gpt-5"、"deepseek-v4" |
 | `model_identifier` | 模型ID | 服务商提供的具体模型名称 |
-| `api_provider` | 用哪个服务商 | 填上面api_providers里的name |
+| `api_provider` | 用哪个服务商 | 填上面api_providers（提供商）里的name |
+| `visual` | 是否启用视觉 | 只有多模态模型可以打开此选项 |
 
 ### 模型配置示例
 
@@ -116,29 +121,26 @@ api_provider = "deepseek"                 # 用deepseek这个服务商
 visual = false                            # 不能看图
 
 [[models]]
-name = "qwen-vl"                          # 视觉模型，能看图
-model_identifier = "qwen-vl-plus"
+name = "qwen3.5-vl"                          # 视觉模型，能看图
+model_identifier = "qwen3.5-flash"
 api_provider = "aliyun"
 visual = true                             # ✅ 能看图
 ```
 
-::: tip 💡 小贴士
-`visual = true` 表示这个AI能看懂图片，需要看图功能就选这种。
-:::
 
-## 🎯 任务配置 [model_task_config]
+## 任务配置 [model_task_config]
 
-不同工作用不同AI，就像不同任务用不同工具：写作用好笔，草稿用普通笔。
+你需要根据模型的特点分给各种任务，实现最好的表现和最优的效率
 
 ### 任务类型说明
 
-| 🏷️ 任务 | 💡 干什么 | 🎯 推荐模型 |
-|----------|----------|------------|
-| `utils` | 工具类：表情包、取名、关系分析 | 便宜实用的模型 |
-| `planner` | 规划器：决定要不要回复 | 便宜实用的模型 |
-| `replyer` | 回复器：生成实际回复 | 质量好的模型 |
-| `vlm` | 看图说话：理解图片 | 视觉模型 |
-| `embedding` | 生成向量：用于记忆搜索 | 专用嵌入模型 |
+| 🏷️ 任务 | 💡 干什么 | 🎯 推荐模型 | 示例模型 |
+|----------|----------|------------|------------|
+| `utils` | 工具类：表情包、学习分析 | 便宜实用的模型 | dsv4/qwen3.5-35A3B/gemini3.1-flash/gptmini |
+| `planner` | 规划器：决定行动逻辑，搜集信息，何时回复等 | 实用的模型（需要支持tool调用 | dsv4/qwen3.5-35A3B/gemini3.1|
+| `replyer` | 回复器：生成实际回复 | 质量好的模型 | dsv4(思考)/claude-4.6-opus/gemini3.1 |
+| `vlm` | 看图说话：理解图片 | 视觉模型 | qwen3.5-35A3B/gemini3.1-flash |
+| `embedding` | 生成向量：用于记忆搜索 | 嵌入模型 | qwen3-embbeding |
 
 ### 任务配置示例
 
@@ -149,7 +151,7 @@ model_list = ["deepseek-chat"]
 max_tokens = 1024
 temperature = 0.3
 
-# 规划器：用便宜实用的
+# 规划器：用实用的
 [model_task_config.planner]
 model_list = ["deepseek-chat"]
 max_tokens = 1024
@@ -163,7 +165,7 @@ temperature = 0.7
 
 # 看图：用视觉模型
 [model_task_config.vlm]
-model_list = ["qwen-vl"]
+model_list = ["qwen3.5-flash"]
 max_tokens = 1024
 temperature = 0.3
 ```
@@ -226,23 +228,3 @@ model_list = ["deepseek-chat"]  # 规划也用便宜的
 model_list = ["deepseek-chat"]  # 回复可以用好一点的（等你有更好的模型再换）
 ```
 
-## 🚨 常见问题
-
-### Q: 哪个AI最好用？
-A: 新手推荐DeepSeek，便宜好用。有钱可以试试GPT-4。
-
-### Q: 需要买API吗？
-A: 是的，大部分AI服务商都要充值。DeepSeek比较便宜。
-
-### Q: 配置错了怎么办？
-A: 改对了再重启就行，配置文件会自动备份。
-
-### Q: 可以同时用多个AI吗？
-A: 可以！model_list可以写多个，会自动切换。
-
-## 🚀 下一步看什么？
-
-- 🆕 **新手推荐**：配置好了就启动试试！
-- 🎭 **想调性格**：看 [人格配置](./personality-config.md)
-- 💬 **想调聊天**：看 [聊天配置](./chat-config.md)
-- 🧠 **想开记忆**：看 [记忆配置](./memory-config.md)

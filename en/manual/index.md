@@ -19,10 +19,7 @@ If you're using MaiBot for the first time, we recommend reading in this order:
 
 ### ⚙️ Configuration Details
 
-- [Basic Configuration](/en/manual/configuration/bot-config) - Platform, nickname, aliases and other basic settings
-- [Personality Configuration](/en/manual/configuration/personality-config) - Define AI personality traits and expression style
-- [Chat Configuration](/en/manual/configuration/chat-config) - Control speech frequency, context length, group/private chat behavior
-- [Memory Configuration](/en/manual/configuration/memory-config) - Long-term memory and automatic memory write-back settings
+- [Bot Configuration](/en/manual/configuration/bot-config) - Platform, nickname, personality, chat, memory, and other bot settings
 - [Model Configuration](/en/manual/configuration/model-config) - LLM model providers and multi-model fallback
 
 ### 🧠 Feature Details

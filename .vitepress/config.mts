@@ -63,9 +63,9 @@ export default defineConfig({
               items: [
                 { text: '配置概览', link: '/manual/configuration/' },
                 { text: 'Bot 配置', link: '/manual/configuration/bot-config' },
-                { text: '人格配置', link: '/manual/configuration/personality-config' },
-                { text: '聊天配置', link: '/manual/configuration/chat-config' },
-                { text: '记忆配置', link: '/manual/configuration/memory-config' },
+                { text: '人格配置', link: '/manual/configuration/bot-config' },
+                { text: '聊天配置', link: '/manual/configuration/bot-config' },
+                { text: '记忆配置', link: '/manual/configuration/bot-config' },
                 { text: '模型配置', link: '/manual/configuration/model-config' },
               ]
             },
@@ -212,9 +212,9 @@ export default defineConfig({
               items: [
                 { text: 'Configuration Overview', link: '/en/manual/configuration/' },
                 { text: 'Bot Config', link: '/en/manual/configuration/bot-config' },
-                { text: 'Personality Config', link: '/en/manual/configuration/personality-config' },
-                { text: 'Chat Config', link: '/en/manual/configuration/chat-config' },
-                { text: 'Memory Config', link: '/en/manual/configuration/memory-config' },
+                { text: 'Personality Config', link: '/en/manual/configuration/bot-config' },
+                { text: 'Chat Config', link: '/en/manual/configuration/bot-config' },
+                { text: 'Memory Config', link: '/en/manual/configuration/bot-config' },
                 { text: 'Model Config', link: '/en/manual/configuration/model-config' },
               ]
             },
